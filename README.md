@@ -1,3 +1,5 @@
+[![Build](https://github.com/renao/PESEditor/actions/workflows/gradle.yml/badge.svg)](https://github.com/renao/PESEditor/actions/workflows/gradle.yml)
+
 # PESEditor 
 
 Option File Editor for PES6. Originally created by Compulsion, with CSV import added and source code released by Juce.
