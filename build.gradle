@@ -3,7 +3,6 @@ plugins {
 }
 
 group = 'pes.editor'
-version = '2024.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
