@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PESConstant;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -70,18 +72,18 @@ public class SelectByTeam extends JPanel {
 	public void refresh() {
 		String[] squads;
 		if (normal) {
-			squads = new String[57 + PESUtils.extraSquad.length + Clubs.total];
+			squads = new String[57 + PESConstant.EXTRA_SQUADS.length + Clubs.total];
 		} else {
-			squads = new String[57 + PESUtils.extraSquad.length + Clubs.total + 1];
+			squads = new String[57 + PESConstant.EXTRA_SQUADS.length + Clubs.total + 1];
 		}
 		System.arraycopy(Stats.nation, 0, squads, 0, 57);
-		System.arraycopy(PESUtils.extraSquad, 0, squads, 57, 16);
+		System.arraycopy(PESConstant.EXTRA_SQUADS, 0, squads, 57, 16);
 		System.arraycopy(Clubs.getNames(of), 0, squads, 57 + 16, Clubs.total);
 		System
-				.arraycopy(PESUtils.extraSquad, 16, squads, 57 + 16 + Clubs.total,
+				.arraycopy(PESConstant.EXTRA_SQUADS, 16, squads, 57 + 16 + Clubs.total,
 						6);
 		if (!normal) {
-			squads[57 + PESUtils.extraSquad.length + Clubs.total] = "All Players";
+			squads[57 + PESConstant.EXTRA_SQUADS.length + Clubs.total] = "All Players";
 		}
 		teamBox.setModel(new DefaultComboBoxModel(squads));
 		if (normal) {
@@ -89,7 +91,7 @@ public class SelectByTeam extends JPanel {
 			numList.refresh(teamBox.getSelectedIndex());
 			posList.refresh(teamBox.getSelectedIndex());
 		} else {
-			teamBox.setSelectedIndex(57 + PESUtils.extraSquad.length + Clubs.total);
+			teamBox.setSelectedIndex(57 + PESConstant.EXTRA_SQUADS.length + Clubs.total);
 		}
 
 		squadList.refresh(teamBox.getSelectedIndex(), true);

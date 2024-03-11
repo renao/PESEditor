@@ -96,7 +96,7 @@ public class InfoPanel extends JScrollPane {
 				}
 
 			} catch (BadLocationException exception) {
-				EditorLogger.Log(exception);
+				EditorLogger.log(exception);
 			}
 			ta.setCaretPosition(0);
 		}

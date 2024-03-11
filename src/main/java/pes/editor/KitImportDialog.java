@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PESConstant;
+
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.event.MouseEvent;
@@ -69,14 +71,14 @@ public class KitImportDialog extends JDialog implements MouseListener {
 			}
 		} else {
 			if (i - Clubs.total > 56) {
-				model.addElement(new KitItem(PESUtils.extraSquad[i - Clubs.total - 57], i));
+				model.addElement(new KitItem(PESConstant.EXTRA_SQUADS[i - Clubs.total - 57], i));
 			} else {
 				model.addElement(new KitItem(Stats.nation[i - Clubs.total], i));
 			}
 			for (int n = Clubs.total; n < Clubs.total + 64; n++) {
 				if (n != i && !Kits.isLic(of2, n)) {
 					if (n - Clubs.total > 56) {
-						model.addElement(new KitItem(PESUtils.extraSquad[n - Clubs.total - 57], n));
+						model.addElement(new KitItem(PESConstant.EXTRA_SQUADS[n - Clubs.total - 57], n));
 					} else {
 						model.addElement(new KitItem(Stats.nation[n - Clubs.total], n));
 					}

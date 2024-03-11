@@ -1,6 +1,6 @@
 package pes.editor.constants;
 
-public class OptionFileConstants {
+public class OptionFileConstant {
 	public static final int LENGTH = 1191936;
 	public static final byte[] SHARKPORT = { 13, 0, 0, 0, 83, 104, 97, 114,
 			107, 80, 111, 114, 116, 83, 97, 118, 101, 0, 0, 0, 0 };

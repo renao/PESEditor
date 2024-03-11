@@ -43,7 +43,7 @@ public class BackChooserDialog extends JDialog implements ActionListener {
 					bi = ImageIO.read(backURL);
 					raster[l] = bi.getData();
 				} catch (IOException exception) {
-					EditorLogger.Log(exception);
+					EditorLogger.log(exception);
 				}
 			}
 			flagButton[l].setMargin(new Insets(0, 0, 0, 0));

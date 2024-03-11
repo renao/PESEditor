@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PESConstant;
+
 import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
@@ -17,7 +19,7 @@ public class PNGFilter extends FileFilter {
 
 		String extension = PESUtils.getExtension(f);
 		if (extension != null) {
-			if (extension.equals(PESUtils.png)) {
+			if (extension.equals(PESConstant.PNG_FILE_EXTENSION)) {
 				return true;
 			} else {
 				return false;

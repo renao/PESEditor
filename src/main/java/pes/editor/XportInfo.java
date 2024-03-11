@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PESConstant;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -21,7 +23,7 @@ public class XportInfo {
 				byte[] temp;
 				game = "";
 				String extension = PESUtils.getExtension(f);
-				if (extension.equals(PESUtils.xps)) {
+				if (extension.equals(PESConstant.XPS_FILE_EXTENSION)) {
 					// int gameIdent = 0;
 					rf.seek(21);
 					int size = PESUtils.swabInt(rf.readInt());
@@ -40,7 +42,7 @@ public class XportInfo {
 					temp = new byte[19];
 					rf.read(temp);
 					game = new String(temp);
-				} else if (extension.equals(PESUtils.max)){
+				} else if (extension.equals(PESConstant.MAX_FILE_EXTENSION)){
 					rf.seek(16);
 					temp = new byte[19];
 					rf.read(temp);
@@ -59,7 +61,7 @@ public class XportInfo {
 				rf.close();
 				return true;
 			} catch (IOException exception) {
-				EditorLogger.Log(exception);
+				EditorLogger.log(exception);
 				return false;
 			}
 		} else {

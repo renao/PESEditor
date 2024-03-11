@@ -308,7 +308,7 @@ public class Stats {
 			nationArray = nationList.toArray(DEFAULT_NATION);
 		}
 		catch (Exception exception) {
-			EditorLogger.Log(exception);
+			EditorLogger.log(exception);
 		}
 		finally {
 			nation = nationArray;
@@ -417,7 +417,7 @@ public class Stats {
 			}
 			setValue(of, player, stat, v);
 		} catch (NumberFormatException exception) {
-			EditorLogger.Log(exception);
+			EditorLogger.log(exception);
 		}
 	}
 

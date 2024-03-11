@@ -1,6 +1,7 @@
 package pes.editor;
 
-import pes.editor.constants.OptionFileConstants;
+import pes.editor.constants.OptionFileConstant;
+import pes.editor.constants.PESConstant;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -263,7 +264,7 @@ public class Editor extends JFrame {
 						if (of.format == 0) {
 							if ((PESUtils.getExtension(dest) == null)
 									|| !(PESUtils.getExtension(dest)
-											.equals(PESUtils.xps))) {
+											.equals(PESConstant.XPS_FILE_EXTENSION))) {
 								dest = new File(dest.getParent()
 										+ File.separator + dest.getName()
 										+ ".xps");
@@ -272,7 +273,7 @@ public class Editor extends JFrame {
 						if (of.format == 2) {
 							if ((PESUtils.getExtension(dest) == null)
 									|| !(PESUtils.getExtension(dest)
-											.equals(PESUtils.psu))) {
+											.equals(PESConstant.PSU_FILE_EXTENSION))) {
 								dest = new File(dest.getParent()
 										+ File.separator + dest.getName()
 										+ ".psu");
@@ -281,7 +282,7 @@ public class Editor extends JFrame {
 						if (of.format == 3) {
 							if ((PESUtils.getExtension(dest) == null)
 									|| !(PESUtils.getExtension(dest)
-											.equals(PESUtils.max))) {
+											.equals(PESConstant.MAX_FILE_EXTENSION))) {
 								dest = new File(dest.getParent()
 										+ File.separator + dest.getName()
 										+ ".max");
@@ -372,7 +373,7 @@ public class Editor extends JFrame {
 						final boolean create = csvSwitch.create.isSelected();
 						if ((PESUtils.getExtension(dest) == null)
 								|| !(PESUtils.getExtension(dest)
-										.equals(PESUtils.csv))) {
+										.equals(PESConstant.CSV_FILE_EXTENSION))) {
 							dest = new File(dest.getParent() + File.separator
 									+ dest.getName() + ".csv");
 						}
@@ -439,7 +440,7 @@ public class Editor extends JFrame {
 						final boolean updateClassicTeams = csvImportSwitch.updateClassicTeams.isSelected();
 						if ((PESUtils.getExtension(src) == null)
 								|| !(PESUtils.getExtension(src)
-										.equals(PESUtils.csv))) {
+										.equals(PESConstant.CSV_FILE_EXTENSION))) {
 							src = new File(src.getParent() + File.separator
 									+ src.getName() + ".csv");
 						}
@@ -470,20 +471,20 @@ public class Editor extends JFrame {
 
 		convertItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
-				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[2], of.data,
-						OptionFileConstants.BLOCKS[2], OptionFileConstants.BLOCK_SIZE[2]);
-				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[3], of.data,
-						OptionFileConstants.BLOCKS[3], OptionFileConstants.BLOCK_SIZE[3]);
-				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[4], of.data,
-						OptionFileConstants.BLOCKS[4], OptionFileConstants.BLOCK_SIZE[4]);
-				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[5], of.data,
-						OptionFileConstants.BLOCKS[5], OptionFileConstants.BLOCK_SIZE[5]);
-				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[6], of.data,
-						OptionFileConstants.BLOCKS[6], OptionFileConstants.BLOCK_SIZE[6]);
-				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[7], of.data,
-						OptionFileConstants.BLOCKS[7], OptionFileConstants.BLOCK_SIZE[7]);
-				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[8], of.data,
-						OptionFileConstants.BLOCKS[8], OptionFileConstants.BLOCK_SIZE[8]);
+				System.arraycopy(of2.data, OptionFileConstant.BLOCKS[2], of.data,
+						OptionFileConstant.BLOCKS[2], OptionFileConstant.BLOCK_SIZE[2]);
+				System.arraycopy(of2.data, OptionFileConstant.BLOCKS[3], of.data,
+						OptionFileConstant.BLOCKS[3], OptionFileConstant.BLOCK_SIZE[3]);
+				System.arraycopy(of2.data, OptionFileConstant.BLOCKS[4], of.data,
+						OptionFileConstant.BLOCKS[4], OptionFileConstant.BLOCK_SIZE[4]);
+				System.arraycopy(of2.data, OptionFileConstant.BLOCKS[5], of.data,
+						OptionFileConstant.BLOCKS[5], OptionFileConstant.BLOCK_SIZE[5]);
+				System.arraycopy(of2.data, OptionFileConstant.BLOCKS[6], of.data,
+						OptionFileConstant.BLOCKS[6], OptionFileConstant.BLOCK_SIZE[6]);
+				System.arraycopy(of2.data, OptionFileConstant.BLOCKS[7], of.data,
+						OptionFileConstant.BLOCKS[7], OptionFileConstant.BLOCK_SIZE[7]);
+				System.arraycopy(of2.data, OptionFileConstant.BLOCKS[8], of.data,
+						OptionFileConstant.BLOCKS[8], OptionFileConstant.BLOCK_SIZE[8]);
 				System.arraycopy(of2.data, 657116, of.data, 657116, 828);
 				
 				if (!of.isWE() && of2.isWE()) {
@@ -683,9 +684,9 @@ public class Editor extends JFrame {
 					dir = null;
 				}
 			} catch (IOException exception){
-				EditorLogger.Log(exception);
+				EditorLogger.log(exception);
 			} catch (ClassNotFoundException exception) {
-                EditorLogger.Log(exception);
+                EditorLogger.log(exception);
             }
         }
 		return dir;

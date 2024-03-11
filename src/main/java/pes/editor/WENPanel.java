@@ -58,7 +58,7 @@ public class WENPanel extends JPanel implements ActionListener {
 		try {
 			setWEN(Integer.parseInt(field.getText()));
 		} catch (NumberFormatException exception) {
-			EditorLogger.Log(exception);
+			EditorLogger.log(exception);
 		}
 	}
 

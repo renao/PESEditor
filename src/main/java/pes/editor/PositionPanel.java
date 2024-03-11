@@ -103,7 +103,7 @@ public class PositionPanel extends JPanel implements ActionListener {
 		try {
 			box = Integer.parseInt(e.getActionCommand());
 		} catch (NumberFormatException exception) {
-			EditorLogger.Log(exception);
+			EditorLogger.log(exception);
 		}
 		if (regPos == box) {
 			checkBox[box].setSelected(true);

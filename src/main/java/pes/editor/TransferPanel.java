@@ -387,7 +387,7 @@ public class TransferPanel extends JPanel implements MouseListener, DropTargetLi
 						selectorL.numList.setSelectedIndex(i + 1);
 					}
 				} catch (NumberFormatException exception) {
-					EditorLogger.Log(exception);
+					EditorLogger.log(exception);
 				}
 			}
 			if (source == 3 && !selectorR.numList.isSelectionEmpty()) {
@@ -405,7 +405,7 @@ public class TransferPanel extends JPanel implements MouseListener, DropTargetLi
 						selectorR.numList.setSelectedIndex(i + 1);
 					}
 				} catch (NumberFormatException exception) {
-					EditorLogger.Log(exception);
+					EditorLogger.log(exception);
 				}
 			}
 		}

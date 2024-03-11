@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PESConstant;
+
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -41,12 +43,12 @@ public class OptionPreview extends JPanel implements PropertyChangeListener {
 		if (extension != null) {
 
 			if (xpInfo.getInfo(file)) {
-				if (extension.equals(PESUtils.xps)) {
+				if (extension.equals(PESConstant.XPS_FILE_EXTENSION)) {
 					previewText.setText(xpInfo.game + "\n\nX-Port game name:\n"
 							+ xpInfo.gameName + "\n\nX-Port save name:\n"
 							+ xpInfo.saveName + "\n\nX-Port notes:\n"
 							+ xpInfo.notes);
-				} else if (extension.equals(PESUtils.max)) {
+				} else if (extension.equals(PESConstant.MAX_FILE_EXTENSION)) {
 					previewText.setText(xpInfo.game + "\n\n"
 							+ xpInfo.gameName);
 				} else {

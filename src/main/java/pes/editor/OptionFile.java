@@ -1,6 +1,7 @@
 package pes.editor;
 
-import pes.editor.constants.OptionFileConstants;
+import pes.editor.constants.OptionFileConstant;
+import pes.editor.constants.PESConstant;
 
 import java.io.File;
 import java.io.RandomAccessFile;
@@ -8,21 +9,13 @@ import java.util.zip.CRC32;
 
 public class OptionFile {
 
-	public byte[] data = new byte[OptionFileConstants.LENGTH];
-
+	public byte[] data = new byte[OptionFileConstant.LENGTH];
 	private byte[] headerData;
-
 	public String fileName;
-
 	public String gameID;
-
-
 	String gameName;
-
 	String saveName;
-
 	String notes;
-
 
 	byte format = -1;
 
@@ -34,8 +27,8 @@ public class OptionFile {
 		String extension = PESUtils.getExtension(of);
 		try {
 			RandomAccessFile in = new RandomAccessFile(of, "r");
-			if (extension != null && extension.equals(PESUtils.xps)) {
-				long offSet = in.length() - OptionFileConstants.LENGTH - 4;
+			if (extension != null && extension.equals(PESConstant.XPS_FILE_EXTENSION)) {
+				long offSet = in.length() - OptionFileConstant.LENGTH - 4;
 				in.seek(21);
 				byte[] temp;
 				int size = PESUtils.swabInt(in.readInt());
@@ -56,16 +49,16 @@ public class OptionFile {
 				in.read(headerData);
 				gameID = new String(headerData, 6, 19);
 				format = 0;
-			} else if (extension != null && extension.equals(PESUtils.psu)) {
-				headerData = new byte[(int) (in.length() - OptionFileConstants.LENGTH)];
+			} else if (extension != null && extension.equals(PESConstant.PSU_FILE_EXTENSION)) {
+				headerData = new byte[(int) (in.length() - OptionFileConstant.LENGTH)];
 				in.read(headerData);
 				gameID = new String(headerData, 64, 19);
 				format = 2;
-			} else if (extension != null && extension.equals(PESUtils.max)) {
+			} else if (extension != null && extension.equals(PESConstant.MAX_FILE_EXTENSION)) {
 				byte[] temp = new byte[(int) in.length()];
 				in.read(temp);
 				String magic = new String(temp, 0, 12, "ISO-8859-1");
-				if (magic.equals(OptionFileConstants.MAGIC_MAX)) {
+				if (magic.equals(OptionFileConstant.MAGIC_MAX)) {
 					int chk = byteToInt(temp, 12);
 					temp[12] = 0;
 					temp[13] = 0;
@@ -95,11 +88,11 @@ public class OptionFile {
 							int size = byteToInt(temp, p);
 							String title = new String(temp, p + 4, 19,
 									"ISO-8859-1");
-							if (size == OptionFileConstants.LENGTH && title.equals(gameID)) {
+							if (size == OptionFileConstant.LENGTH && title.equals(gameID)) {
 								p = p + 36;
 								headerData = new byte[p];
 								System.arraycopy(temp, 0, headerData, 0, p);
-								System.arraycopy(temp, p, data, 0, OptionFileConstants.LENGTH);
+								System.arraycopy(temp, p, data, 0, OptionFileConstant.LENGTH);
 								format = 3;
 							} else {
 								p = p + 36 + size;
@@ -147,8 +140,8 @@ public class OptionFile {
 
 	private void convertData() {
 		int k = 0;
-		for (int a = 0; a < OptionFileConstants.LENGTH; a++) {
-			data[a] = (byte) (data[a] ^ OptionFileConstants.KEY_PC[k]);
+		for (int a = 0; a < OptionFileConstant.LENGTH; a++) {
+			data[a] = (byte) (data[a] ^ OptionFileConstant.KEY_PC[k]);
 			if (k < 255) {
 				k++;
 			} else {
@@ -173,7 +166,7 @@ public class OptionFile {
 			if (format == 0) {
 				saveName = of.getName();
 				saveName = saveName.substring(0, saveName.length() - 4);
-				out.write(OptionFileConstants.SHARKPORT);
+				out.write(OptionFileConstant.SHARKPORT);
 				out.writeInt(PESUtils.swabInt(gameName.length()));
 				out.writeBytes(gameName);
 				out.writeInt(PESUtils.swabInt(saveName.length()));
@@ -186,7 +179,7 @@ public class OptionFile {
 				out.write(headerData);
 			}
 			if (format == 3) {
-				int textSize = headerData.length + OptionFileConstants.LENGTH;
+				int textSize = headerData.length + OptionFileConstant.LENGTH;
 				textSize = ((textSize + 23) / 16 * 16) - 8;
 				// System.out.println(textSize);
 				byte[] temp = new byte[textSize];
@@ -197,8 +190,8 @@ public class OptionFile {
 				int codeSize = temp.length;				
 				
 				byte[] temp2 = new byte[88];
-				System.arraycopy(OptionFileConstants.MAGIC_MAX.getBytes("ISO-8859-1"), 0, temp2, 0,
-						OptionFileConstants.MAGIC_MAX.length());
+				System.arraycopy(OptionFileConstant.MAGIC_MAX.getBytes("ISO-8859-1"), 0, temp2, 0,
+						OptionFileConstant.MAGIC_MAX.length());
 				System
 						.arraycopy(gameID.getBytes("ISO-8859-1"), 0, temp2, 16,
 								19);
@@ -258,9 +251,9 @@ public class OptionFile {
 	private void decrypt() {
 		for (int i = 1; i < 10; i++) {
 			int k = 0;
-			for (int a = OptionFileConstants.BLOCKS[i]; a + 4 <= OptionFileConstants.BLOCKS[i] + OptionFileConstants.BLOCK_SIZE[i]; a = a + 4) {
+			for (int a = OptionFileConstant.BLOCKS[i]; a + 4 <= OptionFileConstant.BLOCKS[i] + OptionFileConstant.BLOCK_SIZE[i]; a = a + 4) {
 				int c = byteToInt(data, a);
-				int p = ((c - OptionFileConstants.KEY[k]) + 0x7ab3684c) ^ 0x7ab3684c;
+				int p = ((c - OptionFileConstant.KEY[k]) + 0x7ab3684c) ^ 0x7ab3684c;
 				data[a] = toByte(p & 0x000000FF);
 				data[a + 1] = toByte((p >>> 8) & 0x000000FF);
 				data[a + 2] = toByte((p >>> 16) & 0x000000FF);
@@ -277,9 +270,9 @@ public class OptionFile {
 	private void encrypt() {
 		for (int i = 1; i < 10; i++) {
 			int k = 0;
-			for (int a = OptionFileConstants.BLOCKS[i]; a + 4 <= OptionFileConstants.BLOCKS[i] + OptionFileConstants.BLOCK_SIZE[i]; a = a + 4) {
+			for (int a = OptionFileConstant.BLOCKS[i]; a + 4 <= OptionFileConstant.BLOCKS[i] + OptionFileConstant.BLOCK_SIZE[i]; a = a + 4) {
 				int p = byteToInt(data, a);
-				int c = OptionFileConstants.KEY[k] + ((p ^ 0x7ab3684c) - 0x7ab3684c);
+				int c = OptionFileConstant.KEY[k] + ((p ^ 0x7ab3684c) - 0x7ab3684c);
 				data[a] = toByte(c & 0x000000FF);
 				data[a + 1] = toByte((c >>> 8) & 0x000000FF);
 				data[a + 2] = toByte((c >>> 16) & 0x000000FF);
@@ -305,13 +298,13 @@ public class OptionFile {
 	public void checkSums() {
 		for (int i = 0; i < 10; i++) {
 			int chk = 0;
-			for (int a = OptionFileConstants.BLOCKS[i]; a + 4 <= OptionFileConstants.BLOCKS[i] + OptionFileConstants.BLOCK_SIZE[i]; a = a + 4) {
+			for (int a = OptionFileConstant.BLOCKS[i]; a + 4 <= OptionFileConstant.BLOCKS[i] + OptionFileConstant.BLOCK_SIZE[i]; a = a + 4) {
 				chk = chk + byteToInt(data, a);
 			}
-			data[OptionFileConstants.BLOCKS[i] - 8] = toByte(chk & 0x000000FF);
-			data[OptionFileConstants.BLOCKS[i] - 7] = toByte((chk >>> 8) & 0x000000FF);
-			data[OptionFileConstants.BLOCKS[i] - 6] = toByte((chk >>> 16) & 0x000000FF);
-			data[OptionFileConstants.BLOCKS[i] - 5] = toByte((chk >>> 24) & 0x000000FF);
+			data[OptionFileConstant.BLOCKS[i] - 8] = toByte(chk & 0x000000FF);
+			data[OptionFileConstant.BLOCKS[i] - 7] = toByte((chk >>> 8) & 0x000000FF);
+			data[OptionFileConstant.BLOCKS[i] - 6] = toByte((chk >>> 16) & 0x000000FF);
+			data[OptionFileConstant.BLOCKS[i] - 5] = toByte((chk >>> 24) & 0x000000FF);
 		}
 	}
 

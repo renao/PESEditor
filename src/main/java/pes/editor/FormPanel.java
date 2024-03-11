@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PESConstant;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -830,7 +832,7 @@ public class FormPanel extends JPanel implements ListSelectionListener,
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File dest = chooserPNG.getSelectedFile();
 			if ((PESUtils.getExtension(dest) == null)
-					|| !(PESUtils.getExtension(dest).equals(PESUtils.png))) {
+					|| !(PESUtils.getExtension(dest).equals(PESConstant.PNG_FILE_EXTENSION))) {
 				// System.out.println(dest);
 				dest = new File(dest.getParent() + File.separator
 						+ dest.getName() + ".png");

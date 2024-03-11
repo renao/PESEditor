@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PESConstant;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -276,7 +278,7 @@ public class TeamPanel extends JPanel implements ActionListener,
 		globalPanel.updateTeamBox(team);
         System.arraycopy(Stats.nation, 0, listText, 140, 57);
 		for (int n = 0; n < 7; n++) {
-			listText[n + Clubs.total + 57] = PESUtils.extraSquad[n];
+			listText[n + Clubs.total + 57] = PESConstant.EXTRA_SQUADS[n];
 		}
 		ok = false;
 		list.setListData(listText);

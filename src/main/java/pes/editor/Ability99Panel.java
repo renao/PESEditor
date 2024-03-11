@@ -108,7 +108,7 @@ public class Ability99Panel extends JPanel implements ActionListener, CaretListe
 				int v = Integer.parseInt(tf.getText());
 				return v > 0 && v < 100;
 			} catch (NumberFormatException exception) {
-				EditorLogger.Log(exception);
+				EditorLogger.log(exception);
 				return false;
 			}
 		}

@@ -1,6 +1,7 @@
 package pes.editor;
 
-import pes.editor.constants.OptionFileConstants;
+import pes.editor.constants.OptionFileConstant;
+import pes.editor.constants.PESConstant;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,13 +22,13 @@ public class OptionFilter extends FileFilter {
 
 		String extension = PESUtils.getExtension(f);
 		if (extension != null) {
-			if (extension.equals(PESUtils.xps) && fileIsXPSOption(f)) {
+			if (extension.equals(PESConstant.XPS_FILE_EXTENSION) && fileIsXPSOption(f)) {
 				return true;
 			}
-			if (extension.equals(PESUtils.psu) && fileIsPSUOption(f)) {
+			if (extension.equals(PESConstant.PSU_FILE_EXTENSION) && fileIsPSUOption(f)) {
 				return true;
 			}
-			if (extension.equals(PESUtils.max) && fileIsMAXOption(f)) {
+			if (extension.equals(PESConstant.MAX_FILE_EXTENSION) && fileIsMAXOption(f)) {
 				return true;
 			}
 		} else if (fileIsPCOption(f)) {
@@ -105,7 +106,7 @@ public class OptionFilter extends FileFilter {
 	private boolean fileIsPCOption(File f) {
 		boolean result = false;
 		try {
-			if (f.canRead() && f.length() == OptionFileConstants.LENGTH) {
+			if (f.canRead() && f.length() == OptionFileConstant.LENGTH) {
 				byte[] id = new byte[4];
 				RandomAccessFile rf = new RandomAccessFile(f, "r");
 				rf.read(id);

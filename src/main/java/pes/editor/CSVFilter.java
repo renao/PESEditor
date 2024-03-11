@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PESConstant;
+
 import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
@@ -13,7 +15,7 @@ public class CSVFilter extends FileFilter {
 		}
 
 		var extension = PESUtils.getExtension(f);
-        return extension != null && extension.equals(PESUtils.csv);
+        return extension != null && extension.equals(PESConstant.CSV_FILE_EXTENSION);
 
     }
 
