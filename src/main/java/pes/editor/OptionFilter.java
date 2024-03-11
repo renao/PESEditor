@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.OptionFileConstants;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -103,7 +105,7 @@ public class OptionFilter extends FileFilter {
 	private boolean fileIsPCOption(File f) {
 		boolean result = false;
 		try {
-			if (f.canRead() && f.length() == OptionFile.LENGTH) {
+			if (f.canRead() && f.length() == OptionFileConstants.LENGTH) {
 				byte[] id = new byte[4];
 				RandomAccessFile rf = new RandomAccessFile(f, "r");
 				rf.read(id);

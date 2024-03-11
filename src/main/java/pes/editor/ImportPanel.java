@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.OptionFileConstants;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -68,12 +70,12 @@ public class ImportPanel extends JPanel {
 				"Options / PES points / Shop items / Cup gallery / Memorial match data");
 		optionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
-				System.arraycopy(of2.data, OptionFile.block[0], of.data,
-						OptionFile.block[0], OptionFile.blockSize[0]);
-				System.arraycopy(of2.data, OptionFile.block[1], of.data,
-						OptionFile.block[1], OptionFile.blockSize[1]);
-				System.arraycopy(of2.data, OptionFile.block[9], of.data,
-						OptionFile.block[9], OptionFile.blockSize[9]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[0], of.data,
+						OptionFileConstants.BLOCKS[0], OptionFileConstants.BLOCK_SIZE[0]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[1], of.data,
+						OptionFileConstants.BLOCKS[1], OptionFileConstants.BLOCK_SIZE[1]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[9], of.data,
+						OptionFileConstants.BLOCKS[9], OptionFileConstants.BLOCK_SIZE[9]);
 				wenShop.wenPanel.refresh();
 				wenShop.shopPanel.status.setText("");
 				optionsButton.setEnabled(false);
@@ -107,12 +109,12 @@ public class ImportPanel extends JPanel {
 		playerButton = new JButton("Players / Squads / Formations");
 		playerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
-				System.arraycopy(of2.data, OptionFile.block[3], of.data,
-						OptionFile.block[3], OptionFile.blockSize[3]);
-				System.arraycopy(of2.data, OptionFile.block[4], of.data,
-						OptionFile.block[4], OptionFile.blockSize[4]);
-				System.arraycopy(of2.data, OptionFile.block[5], of.data,
-						OptionFile.block[5], OptionFile.blockSize[5]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[3], of.data,
+						OptionFileConstants.BLOCKS[3], OptionFileConstants.BLOCK_SIZE[3]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[4], of.data,
+						OptionFileConstants.BLOCKS[4], OptionFileConstants.BLOCK_SIZE[4]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[5], of.data,
+						OptionFileConstants.BLOCKS[5], OptionFileConstants.BLOCK_SIZE[5]);
 				
 				if (!of.isWE() && of2.isWE()) {
 					Convert.allPlayers(of, Convert.WE2007_PES6);
@@ -141,10 +143,10 @@ public class ImportPanel extends JPanel {
 		allKitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				Clubs.importData(of, of2);
-				System.arraycopy(of2.data, OptionFile.block[7], of.data,
-						OptionFile.block[7], OptionFile.blockSize[7]);
-				System.arraycopy(of2.data, OptionFile.block[8], of.data,
-						OptionFile.block[8], OptionFile.blockSize[8]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[7], of.data,
+						OptionFileConstants.BLOCKS[7], OptionFileConstants.BLOCK_SIZE[7]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[8], of.data,
+						OptionFileConstants.BLOCKS[8], OptionFileConstants.BLOCK_SIZE[8]);
 				
 				if (!of.isWE() && of2.isWE()) {
 					Convert.allKitModel(of);

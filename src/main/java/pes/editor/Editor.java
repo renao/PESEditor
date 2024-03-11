@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.OptionFileConstants;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -468,20 +470,20 @@ public class Editor extends JFrame {
 
 		convertItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
-				System.arraycopy(of2.data, OptionFile.block[2], of.data,
-						OptionFile.block[2], OptionFile.blockSize[2]);
-				System.arraycopy(of2.data, OptionFile.block[3], of.data,
-						OptionFile.block[3], OptionFile.blockSize[3]);
-				System.arraycopy(of2.data, OptionFile.block[4], of.data,
-						OptionFile.block[4], OptionFile.blockSize[4]);
-				System.arraycopy(of2.data, OptionFile.block[5], of.data,
-						OptionFile.block[5], OptionFile.blockSize[5]);
-				System.arraycopy(of2.data, OptionFile.block[6], of.data,
-						OptionFile.block[6], OptionFile.blockSize[6]);
-				System.arraycopy(of2.data, OptionFile.block[7], of.data,
-						OptionFile.block[7], OptionFile.blockSize[7]);
-				System.arraycopy(of2.data, OptionFile.block[8], of.data,
-						OptionFile.block[8], OptionFile.blockSize[8]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[2], of.data,
+						OptionFileConstants.BLOCKS[2], OptionFileConstants.BLOCK_SIZE[2]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[3], of.data,
+						OptionFileConstants.BLOCKS[3], OptionFileConstants.BLOCK_SIZE[3]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[4], of.data,
+						OptionFileConstants.BLOCKS[4], OptionFileConstants.BLOCK_SIZE[4]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[5], of.data,
+						OptionFileConstants.BLOCKS[5], OptionFileConstants.BLOCK_SIZE[5]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[6], of.data,
+						OptionFileConstants.BLOCKS[6], OptionFileConstants.BLOCK_SIZE[6]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[7], of.data,
+						OptionFileConstants.BLOCKS[7], OptionFileConstants.BLOCK_SIZE[7]);
+				System.arraycopy(of2.data, OptionFileConstants.BLOCKS[8], of.data,
+						OptionFileConstants.BLOCKS[8], OptionFileConstants.BLOCK_SIZE[8]);
 				System.arraycopy(of2.data, 657116, of.data, 657116, 828);
 				
 				if (!of.isWE() && of2.isWE()) {
