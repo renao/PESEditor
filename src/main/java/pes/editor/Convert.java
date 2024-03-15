@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PlayerConstant;
+
 public class Convert {
 	static final int[][] hairTable = {
 		{
@@ -67,39 +69,39 @@ public class Convert {
 	static final byte WE2007_PES6 = 1;
 	
 	static void player(OptionFile of, int p, byte conv) {
-		int faceType = Stats.getValue(of, p, Stats.faceType);
-		int skin = Stats.getValue(of, p, Stats.skin);
-		int face = Stats.getValue(of, p, Stats.face);
-		int hair = Stats.getValue(of, p, Stats.hair) - 1026;
+		int faceType = PlayerAttributes.getValue(of, p, PlayerAttributes.faceType);
+		int skin = PlayerAttributes.getValue(of, p, PlayerAttributes.skin);
+		int face = PlayerAttributes.getValue(of, p, PlayerAttributes.face);
+		int hair = PlayerAttributes.getValue(of, p, PlayerAttributes.hair) - 1026;
 		if (faceType > 0 && faceType < 3) {
 			int table = (8 * (faceType - 1)) + (2 * skin) + conv;
 			if (face >= 0 && face < faceTable[table].length) {
 				if (faceTable[table][face] != 9999) {
-					Stats.setValue(of, p, Stats.face, faceTable[table][face]);
+					PlayerAttributes.setValue(of, p, PlayerAttributes.face, faceTable[table][face]);
 				} else {
-					Stats.setValue(of, p, Stats.faceType, 0);
-					Stats.setValue(of, p, Stats.face, 0);
+					PlayerAttributes.setValue(of, p, PlayerAttributes.faceType, 0);
+					PlayerAttributes.setValue(of, p, PlayerAttributes.face, 0);
 				}
 			} else {
-				Stats.setValue(of, p, Stats.faceType, 0);
-				Stats.setValue(of, p, Stats.face, 0);
+				PlayerAttributes.setValue(of, p, PlayerAttributes.faceType, 0);
+				PlayerAttributes.setValue(of, p, PlayerAttributes.face, 0);
 			}
 		}
 		
 		if (hair >= 0 && hair < hairTable[conv].length) {
 			if (hairTable[conv][hair] != 9999) {
-				Stats.setValue(of, p, Stats.hair, hairTable[conv][hair] + 1026);
+				PlayerAttributes.setValue(of, p, PlayerAttributes.hair, hairTable[conv][hair] + 1026);
 			} else {
-				Stats.setValue(of, p, Stats.hair, 1026 + 19);
+				PlayerAttributes.setValue(of, p, PlayerAttributes.hair, 1026 + 19);
 			}
 		}
 	}
 	
 	static void allPlayers(OptionFile of, byte conv) {
-		for (int i = 1; i < Player.total; i++) {
+		for (int i = 1; i < PlayerConstant.AMOUNT_PLAYERS; i++) {
 			player(of, i, conv);
 		}
-		for (int i = Player.firstEdit; i < Player.firstEdit + Player.totalEdit; i++) {
+		for (int i = PlayerConstant.INDEX_FIRST_EDIT_PLAYER; i < PlayerConstant.INDEX_FIRST_EDIT_PLAYER + PlayerConstant.AMOUNT_EDIT_PLAYERS; i++) {
 			player(of, i, conv);
 		}
 	}

@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PlayerConstant;
+
 import java.util.Collections;
 import java.util.Vector;
 
@@ -23,17 +25,17 @@ public class NationalityList extends JList {
 		int index;
 		Vector model = new Vector();
 
-		if (nation == Stats.nation.length + 5) {
-			for (int p = 1; p < Player.total; p++) {
+		if (nation == PlayerAttributes.nation.length + 5) {
+			for (int p = 1; p < PlayerConstant.AMOUNT_PLAYERS; p++) {
 				model.addElement(new Player(of, p, 0));
 			}
-			for (int p = Player.firstEdit; p < 32952; p++) {
+			for (int p = PlayerConstant.INDEX_FIRST_EDIT_PLAYER; p < 32952; p++) {
 				model.addElement(new Player(of, p, 0));
 			}
-		} else if (nation == Stats.nation.length + 4) {
+		} else if (nation == PlayerAttributes.nation.length + 4) {
 			boolean free;
 
-			for (int p = 1; p < Player.firstClassic; p++) {
+			for (int p = 1; p < PlayerConstant.INDEX_FIRST_CLASSIC_PLAYER; p++) {
 				free = true;
 				a = Squads.slot32 - 2;
 				do {
@@ -49,7 +51,7 @@ public class NationalityList extends JList {
 				}
 			}
 
-			for (int p = Player.firstClub; p < Player.firstML; p++) {
+			for (int p = PlayerConstant.INDEX_FIRST_CLUB_PLAYER; p < PlayerConstant.INDEX_FIRST_MASTER_LEAGUE_PLAYER; p++) {
 				free = true;
 				a = Squads.slot32 - 2;
 				do {
@@ -64,39 +66,39 @@ public class NationalityList extends JList {
 					model.addElement(new Player(of, p, 0));
 				}
 			}
-		} else if (nation == Stats.nation.length + 3) {
-			for (int p = Player.firstClub; p < Player.firstPESUnited; p++) {
+		} else if (nation == PlayerAttributes.nation.length + 3) {
+			for (int p = PlayerConstant.INDEX_FIRST_CLUB_PLAYER; p < PlayerConstant.INDEX_FIRST_PES_UNITED_PLAYER; p++) {
 				int dupe = getDupe(p);
 				if (dupe != -1) {
 					model.addElement(new Player(of, p, 0));
 					model.addElement(new Player(of, dupe, 0));
 				}
 			}
-		} else if (nation == Stats.nation.length + 2) {
-			for (int p = Player.firstYoung; p < Player.firstOld; p++) {
+		} else if (nation == PlayerAttributes.nation.length + 2) {
+			for (int p = PlayerConstant.INDEX_FIRST_MASTER_LEAGUE_YOUNG_PLAYER; p < PlayerConstant.INDEX_FIRST_MASTER_LEAGUE_OLD_PLAYER; p++) {
 				model.addElement(new Player(of, p, 0));
 			}
-		} else if (nation == Stats.nation.length + 1) {
-			for (int p = Player.firstOld; p < Player.firstUnused; p++) {
+		} else if (nation == PlayerAttributes.nation.length + 1) {
+			for (int p = PlayerConstant.INDEX_FIRST_MASTER_LEAGUE_OLD_PLAYER; p < PlayerConstant.INDEX_FIRST_UNUSED_PLAYER; p++) {
 				model.addElement(new Player(of, p, 0));
 			}
-		} else if (nation == Stats.nation.length) {
-			for (int p = Player.firstUnused; p < Player.total; p++) {
+		} else if (nation == PlayerAttributes.nation.length) {
+			for (int p = PlayerConstant.INDEX_FIRST_UNUSED_PLAYER; p < PlayerConstant.AMOUNT_PLAYERS; p++) {
 				model.addElement(new Player(of, p, 0));
 			}
 		} else {
-			for (int p = 1; p < Player.total; p++) {
-				if (Stats.getValue(of, p, Stats.nationality) == nation) {
+			for (int p = 1; p < PlayerConstant.AMOUNT_PLAYERS; p++) {
+				if (PlayerAttributes.getValue(of, p, PlayerAttributes.nationality) == nation) {
 					model.addElement(new Player(of, p, 0));
 				}
 			}
-			for (int p = Player.firstEdit; p < 32952; p++) {
-				if (Stats.getValue(of, p, Stats.nationality) == nation) {
+			for (int p = PlayerConstant.INDEX_FIRST_EDIT_PLAYER; p < 32952; p++) {
+				if (PlayerAttributes.getValue(of, p, PlayerAttributes.nationality) == nation) {
 					model.addElement(new Player(of, p, 0));
 				}
 			}
 		}
-		if (nation != Stats.nation.length + 3 && alpha) {
+		if (nation != PlayerAttributes.nation.length + 3 && alpha) {
 			Collections.sort(model);
 		}
 		model.trimToSize();
@@ -104,34 +106,34 @@ public class NationalityList extends JList {
 	}
 	
 	private int getDupe(int p) {
-		for (int i = 1; i < Player.firstClassic; i++) {
+		for (int i = 1; i < PlayerConstant.INDEX_FIRST_CLASSIC_PLAYER; i++) {
 			boolean isDupe = true;
-				if (Stats.getValue(of, p, Stats.nationality) != Stats.getValue(of, i, Stats.nationality)) {
+				if (PlayerAttributes.getValue(of, p, PlayerAttributes.nationality) != PlayerAttributes.getValue(of, i, PlayerAttributes.nationality)) {
 					isDupe = false;
 				} else {
 					int score = 0;
-					if (Stats.getValue(of, p, Stats.age) == Stats.getValue(of, i, Stats.age)) {
+					if (PlayerAttributes.getValue(of, p, PlayerAttributes.age) == PlayerAttributes.getValue(of, i, PlayerAttributes.age)) {
 						score++;
 					}
-					if (Stats.getValue(of, p, Stats.height) == Stats.getValue(of, i, Stats.height)) {
+					if (PlayerAttributes.getValue(of, p, PlayerAttributes.height) == PlayerAttributes.getValue(of, i, PlayerAttributes.height)) {
 						score++;
 					}
-					if (Stats.getValue(of, p, Stats.weight) == Stats.getValue(of, i, Stats.weight)) {
+					if (PlayerAttributes.getValue(of, p, PlayerAttributes.weight) == PlayerAttributes.getValue(of, i, PlayerAttributes.weight)) {
 						score++;
 					}
-					if (Stats.getValue(of, p, Stats.foot) == Stats.getValue(of, i, Stats.foot)) {
+					if (PlayerAttributes.getValue(of, p, PlayerAttributes.foot) == PlayerAttributes.getValue(of, i, PlayerAttributes.foot)) {
 						score++;
 					}
-					if (Stats.getValue(of, p, Stats.favSide) == Stats.getValue(of, i, Stats.favSide)) {
+					if (PlayerAttributes.getValue(of, p, PlayerAttributes.favSide) == PlayerAttributes.getValue(of, i, PlayerAttributes.favSide)) {
 						score++;
 					}
-					if (Stats.getValue(of, p, Stats.regPos) == Stats.getValue(of, i, Stats.regPos)) {
+					if (PlayerAttributes.getValue(of, p, PlayerAttributes.regPos) == PlayerAttributes.getValue(of, i, PlayerAttributes.regPos)) {
 						score++;
 					}
-					if (Stats.getValue(of, p, Stats.attack) == Stats.getValue(of, i, Stats.attack)) {
+					if (PlayerAttributes.getValue(of, p, PlayerAttributes.attack) == PlayerAttributes.getValue(of, i, PlayerAttributes.attack)) {
 						score++;
 					}
-					if (Stats.getValue(of, p, Stats.accel) == Stats.getValue(of, i, Stats.accel)) {
+					if (PlayerAttributes.getValue(of, p, PlayerAttributes.accel) == PlayerAttributes.getValue(of, i, PlayerAttributes.accel)) {
 						score++;
 					}
 					if (score < 7) { 

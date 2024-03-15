@@ -73,14 +73,14 @@ public class KitImportDialog extends JDialog implements MouseListener {
 			if (i - Clubs.total > 56) {
 				model.addElement(new KitItem(PESConstant.EXTRA_SQUADS[i - Clubs.total - 57], i));
 			} else {
-				model.addElement(new KitItem(Stats.nation[i - Clubs.total], i));
+				model.addElement(new KitItem(PlayerAttributes.nation[i - Clubs.total], i));
 			}
 			for (int n = Clubs.total; n < Clubs.total + 64; n++) {
 				if (n != i && !Kits.isLic(of2, n)) {
 					if (n - Clubs.total > 56) {
 						model.addElement(new KitItem(PESConstant.EXTRA_SQUADS[n - Clubs.total - 57], n));
 					} else {
-						model.addElement(new KitItem(Stats.nation[n - Clubs.total], n));
+						model.addElement(new KitItem(PlayerAttributes.nation[n - Clubs.total], n));
 					}
 				}
 			}

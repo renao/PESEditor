@@ -68,8 +68,8 @@ public class Ability99Panel extends JPanel implements ActionListener, CaretListe
 
 	public void load(int p) {
 		player = p;
-		for (int i = 0; i < Stats.ability99.length; i++) {
-			initVal[i] = Stats.getString(of, player, Stats.ability99[i]);
+		for (int i = 0; i < PlayerAttributes.ability99.length; i++) {
+			initVal[i] = PlayerAttributes.getString(of, player, PlayerAttributes.ability99[i]);
 			field[i].setText(initVal[i]);
 		}
 	}

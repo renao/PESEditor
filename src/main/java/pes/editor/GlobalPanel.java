@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PlayerConstant;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,7 +95,7 @@ public class GlobalPanel extends JPanel {
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 					if (si == 0) {
-						for (int p = 1; p < Player.total; p++) {
+						for (int p = 1; p < PlayerConstant.AMOUNT_PLAYERS; p++) {
 							if (adj(p) && adjTeam(p)) {
 								for (int i = 1; i < 27; i++) {
 									switch (oi) {
@@ -126,7 +128,7 @@ public class GlobalPanel extends JPanel {
 							}
 						}
 						if (checkBox.isSelected()) {
-							for (int p = Player.firstEdit; p < 32952; p++) {
+							for (int p = PlayerConstant.INDEX_FIRST_EDIT_PLAYER; p < 32952; p++) {
 								if (adj(p) && adjTeam(p)) {
 									for (int i = 1; i < 27; i++) {
 										switch (oi) {
@@ -162,7 +164,7 @@ public class GlobalPanel extends JPanel {
 					}
 
 					if (si == 27) {
-						for (int p = 1; p < Player.total; p++) {
+						for (int p = 1; p < PlayerConstant.AMOUNT_PLAYERS; p++) {
 							if (adj(p) && adjTeam(p)) {
 								for (int i = 28; i < 32; i++) {
 									switch (oi) {
@@ -195,7 +197,7 @@ public class GlobalPanel extends JPanel {
 							}
 						}
 						if (checkBox.isSelected()) {
-							for (int p = Player.firstEdit; p < 32952; p++) {
+							for (int p = PlayerConstant.INDEX_FIRST_EDIT_PLAYER; p < 32952; p++) {
 								if (adj(p) && adjTeam(p)) {
 									for (int i = 28; i < 32; i++) {
 										switch (oi) {
@@ -231,7 +233,7 @@ public class GlobalPanel extends JPanel {
 					}
 
 					if (si != 0 && si != 27) {
-						for (int p = 1; p < Player.total; p++) {
+						for (int p = 1; p < PlayerConstant.AMOUNT_PLAYERS; p++) {
 							if (adj(p) && adjTeam(p)) {
 								switch (oi) {
 								case 0:
@@ -262,7 +264,7 @@ public class GlobalPanel extends JPanel {
 							}
 						}
 						if (checkBox.isSelected()) {
-							for (int p = Player.firstEdit; p < 32952; p++) {
+							for (int p = PlayerConstant.INDEX_FIRST_EDIT_PLAYER; p < 32952; p++) {
 								if (adj(p) && adjTeam(p)) {
 									switch (oi) {
 									case 0:
@@ -359,48 +361,48 @@ public class GlobalPanel extends JPanel {
 			num = num - 1;
 		}
 		if (si > 0 && si <= 26) {
-			Stats.setValue(of, p, Stats.ability99[si - 1], num);
+			PlayerAttributes.setValue(of, p, PlayerAttributes.ability99[si - 1], num);
 		}
 		switch (si) {
 		case 28:
-			Stats.setValue(of, p, Stats.wfa, num);
+			PlayerAttributes.setValue(of, p, PlayerAttributes.wfa, num);
 			break;
 		case 29:
-			Stats.setValue(of, p, Stats.wff, num);
+			PlayerAttributes.setValue(of, p, PlayerAttributes.wff, num);
 			break;
 		case 30:
-			Stats.setValue(of, p, Stats.consistency, num);
+			PlayerAttributes.setValue(of, p, PlayerAttributes.consistency, num);
 			break;
 		case 31:
-			Stats.setValue(of, p, Stats.condition, num);
+			PlayerAttributes.setValue(of, p, PlayerAttributes.condition, num);
 			break;
 		case 32:
-			Stats.setValue(of, p, Stats.age, num);
+			PlayerAttributes.setValue(of, p, PlayerAttributes.age, num);
 			break;
 		}
-		Stats.setValue(of, p, Stats.abilityEdited, 1);
+		PlayerAttributes.setValue(of, p, PlayerAttributes.abilityEdited, 1);
 	}
 
 	private int getStat(int si, int p) {
 		int v = 0;
 		if (si > 0 && si <= 26) {
-			v = Stats.getValue(of, p, Stats.ability99[si - 1]);
+			v = PlayerAttributes.getValue(of, p, PlayerAttributes.ability99[si - 1]);
 		}
 		switch (si) {
 		case 28:
-			v = Stats.getValue(of, p, Stats.wfa);
+			v = PlayerAttributes.getValue(of, p, PlayerAttributes.wfa);
 			break;
 		case 29:
-			v = Stats.getValue(of, p, Stats.wff);
+			v = PlayerAttributes.getValue(of, p, PlayerAttributes.wff);
 			break;
 		case 30:
-			v = Stats.getValue(of, p, Stats.consistency);
+			v = PlayerAttributes.getValue(of, p, PlayerAttributes.consistency);
 			break;
 		case 31:
-			v = Stats.getValue(of, p, Stats.condition);
+			v = PlayerAttributes.getValue(of, p, PlayerAttributes.condition);
 			break;
 		case 32:
-			v = Stats.getValue(of, p, Stats.age);
+			v = PlayerAttributes.getValue(of, p, PlayerAttributes.age);
 			break;
 		}
 		if (si == 32) {
@@ -417,7 +419,7 @@ public class GlobalPanel extends JPanel {
 		if (si == 0) {
 			result = true;
 		} else {
-			int v = Stats.getValue(of, p, Stats.regPos);
+			int v = PlayerAttributes.getValue(of, p, PlayerAttributes.regPos);
 			if (si == 1) {
 				si = si - 1;
 			}

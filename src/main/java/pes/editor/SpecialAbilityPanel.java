@@ -33,8 +33,8 @@ public class SpecialAbilityPanel extends JPanel {
 
 	public void load(int p) {
 		player = p;
-		for (int i = 0; i < Stats.abilitySpecial.length; i++) {
-			if (Stats.getValue(of, player, Stats.abilitySpecial[i]) == 1) {
+		for (int i = 0; i < PlayerAttributes.abilitySpecial.length; i++) {
+			if (PlayerAttributes.getValue(of, player, PlayerAttributes.abilitySpecial[i]) == 1) {
 				checkBox[i].setSelected(true);
 			} else {
 				checkBox[i].setSelected(false);

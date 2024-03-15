@@ -276,7 +276,7 @@ public class TeamPanel extends JPanel implements ActionListener,
 			listText[t] = Clubs.getAbv(of, t) + "     " + team[t];
 		}
 		globalPanel.updateTeamBox(team);
-        System.arraycopy(Stats.nation, 0, listText, 140, 57);
+        System.arraycopy(PlayerAttributes.nation, 0, listText, 140, 57);
 		for (int n = 0; n < 7; n++) {
 			listText[n + Clubs.total + 57] = PESConstant.EXTRA_SQUADS[n];
 		}

@@ -47,7 +47,7 @@ public class GeneralAbilityPanel extends JPanel {
 		of = opf;
 		setBorder(BorderFactory.createTitledBorder("General"));
 		// stats = s;
-		nationBox = new JComboBox(Stats.nation);
+		nationBox = new JComboBox(PlayerAttributes.nation);
 		ageField = new JTextField(2);
 		ageField.setInputVerifier(new VerifierAge());
 		heightField = new JTextField(2);
@@ -58,11 +58,11 @@ public class GeneralAbilityPanel extends JPanel {
 				"R foot / B side", "L foot / L side", "L foot / R side",
 				"L foot / B side" };
 		footBox = new JComboBox(modF);
-		wfaBox = new JComboBox(Stats.mod18);
-		wffBox = new JComboBox(Stats.mod18);
-		consBox = new JComboBox(Stats.mod18);
-		condBox = new JComboBox(Stats.mod18);
-		injuryBox = new JComboBox(Stats.modInjury);
+		wfaBox = new JComboBox(PlayerAttributes.mod18);
+		wffBox = new JComboBox(PlayerAttributes.mod18);
+		consBox = new JComboBox(PlayerAttributes.mod18);
+		condBox = new JComboBox(PlayerAttributes.mod18);
+		injuryBox = new JComboBox(PlayerAttributes.modInjury);
 		String[] mod14 = { "1", "2", "3", "4" };
 		dribBox = new JComboBox(mod14);
 		dkBox = new JComboBox(mod14);
@@ -103,23 +103,23 @@ public class GeneralAbilityPanel extends JPanel {
 
 	public void load(int p) {
 		player = p;
-		nationBox.setSelectedItem(Stats.getString(of, player, Stats.nationality));
-		ageField.setText(Stats.getString(of, player, Stats.age));
-		heightField.setText(Stats.getString(of, player, Stats.height));
-		weightField.setText(Stats.getString(of, player, Stats.weight));
+		nationBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.nationality));
+		ageField.setText(PlayerAttributes.getString(of, player, PlayerAttributes.age));
+		heightField.setText(PlayerAttributes.getString(of, player, PlayerAttributes.height));
+		weightField.setText(PlayerAttributes.getString(of, player, PlayerAttributes.weight));
 
-		wfaBox.setSelectedItem(Stats.getString(of, player, Stats.wfa));
-		wffBox.setSelectedItem(Stats.getString(of, player, Stats.wff));
-		consBox.setSelectedItem(Stats.getString(of, player, Stats.consistency));
-		condBox.setSelectedItem(Stats.getString(of, player, Stats.condition));
-		injuryBox.setSelectedItem(Stats.getString(of, player, Stats.injury));
-		fkBox.setSelectedItem(Stats.getString(of, player, Stats.freekick));
-		pkBox.setSelectedItem(Stats.getString(of, player, Stats.pkStyle));
-		dribBox.setSelectedItem(Stats.getString(of, player, Stats.dribSty));
-		dkBox.setSelectedItem(Stats.getString(of, player, Stats.dkSty));
+		wfaBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.wfa));
+		wffBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.wff));
+		consBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.consistency));
+		condBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.condition));
+		injuryBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.injury));
+		fkBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.freekick));
+		pkBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.pkStyle));
+		dribBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.dribSty));
+		dkBox.setSelectedItem(PlayerAttributes.getString(of, player, PlayerAttributes.dkSty));
 		
-		int foot = Stats.getValue(of, player, Stats.foot);
-		int side = Stats.getValue(of, player, Stats.favSide);
+		int foot = PlayerAttributes.getValue(of, player, PlayerAttributes.foot);
+		int side = PlayerAttributes.getValue(of, player, PlayerAttributes.favSide);
 		int item = (foot * 3) + side;
 		footBox.setSelectedIndex(item);
 

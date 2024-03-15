@@ -191,14 +191,14 @@ public class FormPanel extends JPanel implements ListSelectionListener,
 	public FormPanel(OptionFile opf) {
 		super();
 		of = opf;
-		
+
 		String localPlayerType = DataFlavor.javaJVMLocalObjectMimeType
-				+ ";class=editor.Player";
+				+ ";class=" + Player.class.getName();
 		try {
 			localPlayerFlavor = new DataFlavor(localPlayerType);
 		} catch (ClassNotFoundException e) {
 			System.out
-					.println("FormTransferHandler: unable to create data flavor");
+					.println("FormPanel: unable to create data flavor");
 		}
 
 		chooserPNG.addChoosableFileFilter(pngFilter);

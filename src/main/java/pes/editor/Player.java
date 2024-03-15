@@ -1,32 +1,14 @@
 package pes.editor;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import pes.editor.constants.PlayerConstant;
 
-public class Player implements Comparable, Serializable {
+public class Player implements Comparable<Player>, Serializable {
 	public String name;
-
 	public int index;
-
 	public int adr;
-
 	private OptionFile of;
-	
-	static final int startAdr = 37116;
-	static final int startAdrE = 14288;
-	//static int firstJapan = 4485;
-	static final int firstML = 4414;
-	static final int firstShop = 4437;
-	static final int firstYoung = 4597;
-	static final int firstOld = 4774;
-	static final int firstUnused = 4784;
-	static final int firstEdit = 32768;
-	static final int total = 5000;
-	static final int totalEdit = 184;
-	static final int firstClassic = 1312;
-	static final int firstClub = 1473;
-	static final int firstPESUnited = 3954;
 
 	public Player(OptionFile opf, int i, int sa) {
 		of = opf;
@@ -37,17 +19,17 @@ public class Player implements Comparable, Serializable {
 		adr = sa;
 		if (i == 0) {
 			name = "<empty>";
-		} else if (i < 0 || (i >= total && i < firstEdit) || i > 32951) {
+		} else if (i < 0 || (i >= PlayerConstant.AMOUNT_PLAYERS && i < PlayerConstant.INDEX_FIRST_EDIT_PLAYER) || i > 32951) {
 			name = "<ERROR>";
 			index = 0;
 		} else {
 			// adr = 31568 + (i * 124);
-			int a = startAdr;
+			int a = PlayerConstant.startAdr;
 			int offSet = i * 124;
-			if (i >= firstEdit) {
+			if (i >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER) {
 				// adr = 8744 + (i * 124);
-				a = startAdrE;
-				offSet = (i - firstEdit) * 124;
+				a = PlayerConstant.startAdrE;
+				offSet = (i - PlayerConstant.INDEX_FIRST_EDIT_PLAYER) * 124;
 			}
 			byte[] nameBytes = new byte[32];
 			System.arraycopy(of.data, a + offSet, nameBytes, 0, 32);
@@ -59,17 +41,14 @@ public class Player implements Comparable, Serializable {
 					len = j;
 				}
 			}
-			try {
-				name = new String(nameBytes, 0, len, "UTF-16LE");
-			} catch (UnsupportedEncodingException e) {
-				name = "<Error " + String.valueOf(index) + ">";
-			}
 
-			if (name.equals("") && index >= firstEdit) {
+			name = new String(nameBytes, 0, len, StandardCharsets.UTF_16LE);
+
+			if (name.isEmpty() && index >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER) {
 				// name = "<???>";
-				name = "<Edited " + String.valueOf(index - firstEdit) + ">";
+				name = "<Edited " + String.valueOf(index - PlayerConstant.INDEX_FIRST_EDIT_PLAYER) + ">";
 			} else if (name.equals("")) {
-				if (index >= firstUnused) {
+				if (index >= PlayerConstant.INDEX_FIRST_UNUSED_PLAYER) {
 					name = "<Unused " + String.valueOf(index) + ">";
 				} else {
 					name = "<L " + String.valueOf(index) + ">";
@@ -79,19 +58,17 @@ public class Player implements Comparable, Serializable {
 	}
 
 	public String toString() {
-		return name;
+		return name + " [" + index + "]";
 	}
 
-	public int compareTo(Object o) {
-		Player n = (Player) o;
-		int cmp = name.compareTo(n.name);
-		if (cmp == 0) {
-			var firstAge = Stats.getValue(of, index, Stats.age);
-			var secondAge = Stats.getValue(of, n.index, Stats.age);
-			cmp = Integer.compare(firstAge, secondAge);
+	public int compareTo(Player other) {
+		int result = name.compareTo(other.name);
+		if (result == 0) {
+			var firstAge = PlayerAttributes.getValue(of, index, PlayerAttributes.age);
+			var secondAge = PlayerAttributes.getValue(of, other.index, PlayerAttributes.age);
+			result = Integer.compare(firstAge, secondAge);
 		}
-		return cmp;
-
+		return result;
 	}
 
 	public void setName(String newName) {
@@ -105,20 +82,20 @@ public class Player implements Comparable, Serializable {
 			} else {
 				System.arraycopy(t, 0, newNameBytes, 0, 30);
 			}
-			int a = startAdr;
+			int a = PlayerConstant.startAdr;
 			int offSet = index * 124;
-			if (index >= firstEdit) {
+			if (index >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER) {
 				// adr = 8744 + (i * 124);
-				a = startAdrE;
-				offSet = (index - firstEdit) * 124;
+				a = PlayerConstant.startAdrE;
+				offSet = (index - PlayerConstant.INDEX_FIRST_EDIT_PLAYER) * 124;
 			}
 			System.arraycopy(newNameBytes, 0, of.data, a + offSet, 32);
 			//of.data[a + offSet + 48] = -51;
 			//of.data[a + offSet + 49] = -51;
-			Stats.setValue(of, index, Stats.callName, 0xcdcd);
+			PlayerAttributes.setValue(of, index, PlayerAttributes.callName, 0xcdcd);
 
-			Stats.setValue(of, index, Stats.nameEdited, 1);
-			Stats.setValue(of, index, Stats.callEdited, 1);
+			PlayerAttributes.setValue(of, index, PlayerAttributes.nameEdited, 1);
+			PlayerAttributes.setValue(of, index, PlayerAttributes.callEdited, 1);
 			// of.data[a + offSet + 50] = 1;
 			name = newName;
 		}
@@ -126,9 +103,9 @@ public class Player implements Comparable, Serializable {
 	
 	public String getShirtName() {
 		String sn = "";
-		int a = startAdr + 32 + (index * 124);
-		if (index >= firstEdit) {
-			a = startAdrE + 32 + ((index - firstEdit) * 124);
+		int a = PlayerConstant.startAdr + 32 + (index * 124);
+		if (index >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER) {
+			a = PlayerConstant.startAdrE + 32 + ((index - PlayerConstant.INDEX_FIRST_EDIT_PLAYER) * 124);
 		}
 		if (of.data[a] != 0) {
 			byte[] sb = new byte[16];
@@ -146,9 +123,9 @@ public class Player implements Comparable, Serializable {
 
 	public void setShirtName(String n) {
 		if (n.length() < 16 && index != 0) {
-			int a = startAdr + 32 + (index * 124);
-			if (index >= firstEdit) {
-				a = startAdrE + 32 + ((index - firstEdit) * 124);
+			int a = PlayerConstant.startAdr + 32 + (index * 124);
+			if (index >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER) {
+				a = PlayerConstant.startAdrE + 32 + ((index - PlayerConstant.INDEX_FIRST_EDIT_PLAYER) * 124);
 			}
 			byte[] t = new byte[16];
 			n = n.toUpperCase();
@@ -161,7 +138,7 @@ public class Player implements Comparable, Serializable {
 			}
 			System.arraycopy(nb, 0, t, 0, nb.length);
 			System.arraycopy(t, 0, of.data, a, 16);
-			Stats.setValue(of, index, Stats.shirtEdited, 1);
+			PlayerAttributes.setValue(of, index, PlayerAttributes.shirtEdited, 1);
 		}
 	}
 	
@@ -195,9 +172,4 @@ public class Player implements Comparable, Serializable {
 		result.append(n.substring(n.length() - 1));
 		setShirtName(result.toString());
 	}
-
-	/*
-	 * private int getNumAdr(int a) { return 651576 + ((a - 657886) / 2); }
-	 */
-
 }

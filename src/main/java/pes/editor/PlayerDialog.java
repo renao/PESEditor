@@ -146,51 +146,51 @@ public class PlayerDialog extends JDialog {// implements ListSelectionListener,
 	}
 
 	private void updateStats() {
-		for (int i = 0; i < Stats.roles.length; i++) {
+		for (int i = 0; i < PlayerAttributes.roles.length; i++) {
 			if (i != 1) {
-				Stats.setValue(of, index, Stats.roles[i], boToInt(posPanel.checkBox[i].isSelected()));
+				PlayerAttributes.setValue(of, index, PlayerAttributes.roles[i], boToInt(posPanel.checkBox[i].isSelected()));
 			}
 		}
 		int v = 0;
-		for (int i = 0; i < Stats.roles.length; i++) {
+		for (int i = 0; i < PlayerAttributes.roles.length; i++) {
 			if (((String) (posPanel.regBox.getSelectedItem()))
-					.equals(Stats.roles[i].name)) {
+					.equals(PlayerAttributes.roles[i].name)) {
 				v = i;
 			}
 		}
-		Stats.setValue(of, index, Stats.regPos, v);
+		PlayerAttributes.setValue(of, index, PlayerAttributes.regPos, v);
 		
-		Stats.setValue(of, index, Stats.height, genPanel.heightField.getText());
+		PlayerAttributes.setValue(of, index, PlayerAttributes.height, genPanel.heightField.getText());
 
 		int item = genPanel.footBox.getSelectedIndex();
 		int foot = item / 3;
 		int side = item - (foot * 3);
-		Stats.setValue(of, index, Stats.foot, foot);
-		Stats.setValue(of, index, Stats.favSide, side);
-		Stats.setValue(of, index, Stats.wfa, (String) (genPanel.wfaBox.getSelectedItem()));
-		Stats.setValue(of, index, Stats.wff, (String) (genPanel.wffBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.foot, foot);
+		PlayerAttributes.setValue(of, index, PlayerAttributes.favSide, side);
+		PlayerAttributes.setValue(of, index, PlayerAttributes.wfa, (String) (genPanel.wfaBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.wff, (String) (genPanel.wffBox.getSelectedItem()));
 		
-		for (int i = 0; i < Stats.ability99.length; i++) {
-			Stats.setValue(of, index, Stats.ability99[i], abiPanel.field[i].getText());
+		for (int i = 0; i < PlayerAttributes.ability99.length; i++) {
+			PlayerAttributes.setValue(of, index, PlayerAttributes.ability99[i], abiPanel.field[i].getText());
 		}
 
-		Stats.setValue(of, index, Stats.consistency, (String) (genPanel.consBox.getSelectedItem()));
-		Stats.setValue(of, index, Stats.condition, (String) (genPanel.condBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.consistency, (String) (genPanel.consBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.condition, (String) (genPanel.condBox.getSelectedItem()));
 
-		for (int i = 0; i < Stats.abilitySpecial.length; i++) {
-			Stats.setValue(of, index, Stats.abilitySpecial[i], boToInt(spePanel.checkBox[i].isSelected()));
+		for (int i = 0; i < PlayerAttributes.abilitySpecial.length; i++) {
+			PlayerAttributes.setValue(of, index, PlayerAttributes.abilitySpecial[i], boToInt(spePanel.checkBox[i].isSelected()));
 		}
 		
-		Stats.setValue(of, index, Stats.injury, (String) (genPanel.injuryBox.getSelectedItem()));
-		Stats.setValue(of, index, Stats.freekick, (String) (genPanel.fkBox.getSelectedItem()));
-		Stats.setValue(of, index, Stats.pkStyle, (String) (genPanel.pkBox.getSelectedItem()));
-		Stats.setValue(of, index, Stats.age, genPanel.ageField.getText());
-		Stats.setValue(of, index, Stats.weight, genPanel.weightField.getText());
-		Stats.setValue(of, index, Stats.nationality, (String) (genPanel.nationBox.getSelectedItem()));
-		Stats.setValue(of, index, Stats.dribSty, (String) (genPanel.dribBox.getSelectedItem()));
-		Stats.setValue(of, index, Stats.dkSty, (String) (genPanel.dkBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.injury, (String) (genPanel.injuryBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.freekick, (String) (genPanel.fkBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.pkStyle, (String) (genPanel.pkBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.age, genPanel.ageField.getText());
+		PlayerAttributes.setValue(of, index, PlayerAttributes.weight, genPanel.weightField.getText());
+		PlayerAttributes.setValue(of, index, PlayerAttributes.nationality, (String) (genPanel.nationBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.dribSty, (String) (genPanel.dribBox.getSelectedItem()));
+		PlayerAttributes.setValue(of, index, PlayerAttributes.dkSty, (String) (genPanel.dkBox.getSelectedItem()));
 
-		Stats.setValue(of, index, Stats.abilityEdited, 1);
+		PlayerAttributes.setValue(of, index, PlayerAttributes.abilityEdited, 1);
 	}
 
 	private int boToInt(boolean b) {

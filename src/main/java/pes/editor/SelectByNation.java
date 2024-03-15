@@ -42,14 +42,14 @@ public class SelectByNation extends JPanel {
 				freeList.refresh(i, alpha);
 			}
 		});
-		String[] boxChoice = new String[Stats.nation.length + 6];
+		String[] boxChoice = new String[PlayerAttributes.nation.length + 6];
 		boxChoice[boxChoice.length - 6] = "Unused";
 		boxChoice[boxChoice.length - 5] = "ML Old";
 		boxChoice[boxChoice.length - 4] = "ML Young";
 		boxChoice[boxChoice.length - 3] = "Duplicates?";
 		boxChoice[boxChoice.length - 2] = "Free Agents";
 		boxChoice[boxChoice.length - 1] = "All Players";
-		System.arraycopy(Stats.nation, 0, boxChoice, 0, Stats.nation.length);
+		System.arraycopy(PlayerAttributes.nation, 0, boxChoice, 0, PlayerAttributes.nation.length);
 		nationBox = new JComboBox(boxChoice);
 		nationBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {

@@ -120,62 +120,62 @@ public class PositionList extends JList {
 			int pli;
 			int[] temp = new int[32];
 			int c = 0;
-			Stat stat = Stats.gk;
+			PlayerAttribute playerAttribute = PlayerAttributes.gk;
 			if ((selPos > 0 && selPos < 4) || (selPos > 5 && selPos < 8)) {
-				stat = Stats.cbt;
+				playerAttribute = PlayerAttributes.cbt;
 			}
 			if (selPos == 4) {
-				stat = Stats.cwp;
+				playerAttribute = PlayerAttributes.cwp;
 			}
 			if (selPos == 5) {
-				stat = Stats.cwp;
+				playerAttribute = PlayerAttributes.cwp;
 			}
 			if (selPos == 8) {
-				stat = Stats.sb;
+				playerAttribute = PlayerAttributes.sb;
 			}
 			if (selPos == 9) {
-				stat = Stats.sb;
+				playerAttribute = PlayerAttributes.sb;
 			}
 			if (selPos > 9 && selPos < 15) {
-				stat = Stats.dm;
+				playerAttribute = PlayerAttributes.dm;
 			}
 
 			if (selPos == 15) {
-				stat = Stats.wb;
+				playerAttribute = PlayerAttributes.wb;
 			}
 			if (selPos == 16) {
-				stat = Stats.wb;
+				playerAttribute = PlayerAttributes.wb;
 			}
 
 			if (selPos > 16 && selPos < 22) {
-				stat = Stats.cm;
+				playerAttribute = PlayerAttributes.cm;
 			}
 			if (selPos == 22) {
-				stat = Stats.sm;
+				playerAttribute = PlayerAttributes.sm;
 			}
 			if (selPos == 23) {
-				stat = Stats.sm;
+				playerAttribute = PlayerAttributes.sm;
 			}
 			if (selPos > 23 && selPos < 29) {
-				stat = Stats.am;
+				playerAttribute = PlayerAttributes.am;
 			}
 			if (selPos == 29) {
-				stat = Stats.wg;
+				playerAttribute = PlayerAttributes.wg;
 			}
 			if (selPos == 30) {
-				stat = Stats.wg;
+				playerAttribute = PlayerAttributes.wg;
 			}
 			if (selPos > 30 && selPos < 36) {
-				stat = Stats.ss;
+				playerAttribute = PlayerAttributes.ss;
 			}
 			if (selPos > 35 && selPos < 41) {
-				stat = Stats.cf;
+				playerAttribute = PlayerAttributes.cf;
 			}
 
 			c = 0;
 			for (int i = 0; i < size; i++) {
 				pli = ((Player) (sl.getModel().getElementAt(i))).index;
-				if (pli != 0 && Stats.getValue(of, pli, stat) == 1) {
+				if (pli != 0 && PlayerAttributes.getValue(of, pli, playerAttribute) == 1) {
 					// System.out.println(i);
 					temp[c] = i;
 					c++;

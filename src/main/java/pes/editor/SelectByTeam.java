@@ -76,7 +76,7 @@ public class SelectByTeam extends JPanel {
 		} else {
 			squads = new String[57 + PESConstant.EXTRA_SQUADS.length + Clubs.total + 1];
 		}
-		System.arraycopy(Stats.nation, 0, squads, 0, 57);
+		System.arraycopy(PlayerAttributes.nation, 0, squads, 0, 57);
 		System.arraycopy(PESConstant.EXTRA_SQUADS, 0, squads, 57, 16);
 		System.arraycopy(Clubs.getNames(of), 0, squads, 57 + 16, Clubs.total);
 		System

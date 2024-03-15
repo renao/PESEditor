@@ -106,111 +106,111 @@ public class InfoPanel extends JScrollPane {
 	private void insertStats(int index1, int index2)
 			throws BadLocationException {
 		StyleConstants.setForeground(attr, Color.white);
-		insertStat(Stats.wfa, index1, index2);
-		insertStat(Stats.wff, index1, index2);
+		insertStat(PlayerAttributes.wfa, index1, index2);
+		insertStat(PlayerAttributes.wff, index1, index2);
 		// insertStat(stats.statX, index1, index2);
-		for (int i = 0; i < Stats.ability99.length; i++) {
-			insertStat(Stats.ability99[i], index1, index2);
+		for (int i = 0; i < PlayerAttributes.ability99.length; i++) {
+			insertStat(PlayerAttributes.ability99[i], index1, index2);
 		}
-		insertStat(Stats.consistency, index1, index2);
-		insertStat(Stats.condition, index1, index2);
+		insertStat(PlayerAttributes.consistency, index1, index2);
+		insertStat(PlayerAttributes.condition, index1, index2);
 
 	}
 
 	private void insertRole(int index1, int index2) throws BadLocationException {
 		String text = "";
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.gk) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.gk) == 1) {
 			text = "GK";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.gk) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.gk) == 1) {
 			text = text + "\t\tGK";
 		}
 		text = text + "\n";
 
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.cwp) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.cwp) == 1) {
 			text = text + "CWP  ";
 		}
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.cbt) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.cbt) == 1) {
 			text = text + "CB  ";
 		}
 		if (index2 > 0) {
 			text = text + "\t\t";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.cwp) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.cwp) == 1) {
 			text = text + "CWP  ";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.cbt) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.cbt) == 1) {
 			text = text + "CB  ";
 		}
 		text = text + "\n";
 
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.sb) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.sb) == 1) {
 			text = text + "SB  ";
 		}
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.wb) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.wb) == 1) {
 			text = text + "WB  ";
 		}
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.dm) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.dm) == 1) {
 			text = text + "DM  ";
 		}
 		if (index2 > 0) {
 			text = text + "\t\t";
 		}
 
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.sb) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.sb) == 1) {
 			text = text + "SB  ";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.wb) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.wb) == 1) {
 			text = text + "WB  ";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.dm) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.dm) == 1) {
 			text = text + "DM  ";
 		}
 		text = text + "\n";
 
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.cm) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.cm) == 1) {
 			text = text + "CM  ";
 		}
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.sm) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.sm) == 1) {
 			text = text + "SM  ";
 		}
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.am) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.am) == 1) {
 			text = text + "AM  ";
 		}
 		if (index2 > 0) {
 			text = text + "\t\t";
 		}
 
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.cm) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.cm) == 1) {
 			text = text + "CM  ";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.sm) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.sm) == 1) {
 			text = text + "SM  ";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.am) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.am) == 1) {
 			text = text + "AM  ";
 		}
 
 		text = text + "\n";
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.ss) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.ss) == 1) {
 			text = text + "SS  ";
 		}
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.cf) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.cf) == 1) {
 			text = text + "CF  ";
 		}
-		if (index1 > 0 && Stats.getValue(of, index1, Stats.wg) == 1) {
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, PlayerAttributes.wg) == 1) {
 			text = text + "WG  ";
 		}
 		if (index2 > 0) {
 			text = text + "\t\t";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.ss) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.ss) == 1) {
 			text = text + "SS  ";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.cf) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.cf) == 1) {
 			text = text + "CF  ";
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, Stats.wg) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, PlayerAttributes.wg) == 1) {
 			text = text + "WG  ";
 		}
 		if (index2 > 0) {
@@ -224,11 +224,11 @@ public class InfoPanel extends JScrollPane {
 
 	private void insertAbilities(int index1, int index2)
 			throws BadLocationException {
-		for (int i = 0; i < Stats.abilitySpecial.length; i++) {
+		for (int i = 0; i < PlayerAttributes.abilitySpecial.length; i++) {
 			if ((i & 1) == 1) {
-				insertAbility(Stats.abilitySpecial[i], index1, index2, Color.red);
+				insertAbility(PlayerAttributes.abilitySpecial[i], index1, index2, Color.red);
 			} else {
-				insertAbility(Stats.abilitySpecial[i], index1, index2, Color.green);
+				insertAbility(PlayerAttributes.abilitySpecial[i], index1, index2, Color.green);
 			}
 		}
 		// StyleConstants.setForeground(attr, Color.yellow);
@@ -296,20 +296,20 @@ public class InfoPanel extends JScrollPane {
 			throws BadLocationException {
 		StyleConstants.setForeground(attr, Color.white);
 		if (index1 > 0) {
-			doc.insertString(doc.getLength(), Stats.getString(of, index1, Stats.nationality),
+			doc.insertString(doc.getLength(), PlayerAttributes.getString(of, index1, PlayerAttributes.nationality),
 					attr);
 		}
 		if (index2 > 0) {
 			doc.insertString(doc.getLength(), "\t"
-					+ Stats.getString(of, index2, Stats.nationality), attr);
+					+ PlayerAttributes.getString(of, index2, PlayerAttributes.nationality), attr);
 		}
 		if (index1 > 0) {
 			doc.insertString(doc.getLength(), "\nAge: "
-					+ Stats.getString(of, index1, Stats.age), attr);
+					+ PlayerAttributes.getString(of, index1, PlayerAttributes.age), attr);
 		}
 		if (index2 > 0) {
 			doc.insertString(doc.getLength(), "\tAge: "
-					+ Stats.getString(of, index2, Stats.age), attr);
+					+ PlayerAttributes.getString(of, index2, PlayerAttributes.age), attr);
 		}
 	}
 
@@ -317,8 +317,8 @@ public class InfoPanel extends JScrollPane {
 		StyleConstants.setForeground(attr, Color.white);
 		if (index1 > 0) {
 			String footSide = "LF/";
-			if (Stats.getValue(of, index1, Stats.foot) == 1) {
-				switch (Stats.getValue(of, index1, Stats.favSide)) {
+			if (PlayerAttributes.getValue(of, index1, PlayerAttributes.foot) == 1) {
+				switch (PlayerAttributes.getValue(of, index1, PlayerAttributes.favSide)) {
 				case 0:
 					footSide = footSide + "LS";
 					break;
@@ -331,7 +331,7 @@ public class InfoPanel extends JScrollPane {
 				}
 			} else {
 				footSide = "RF/";
-				switch (Stats.getValue(of, index1, Stats.favSide)) {
+				switch (PlayerAttributes.getValue(of, index1, PlayerAttributes.favSide)) {
 				case 0:
 					footSide = footSide + "RS";
 					break;
@@ -345,8 +345,8 @@ public class InfoPanel extends JScrollPane {
 			}
 			footSide = footSide + ", ";
 			doc.insertString(doc.getLength(), footSide
-					+ Stats.getString(of, index1, Stats.height) + "cm, "
-					+ Stats.getString(of, index1, Stats.weight) + "Kg", attr);
+					+ PlayerAttributes.getString(of, index1, PlayerAttributes.height) + "cm, "
+					+ PlayerAttributes.getString(of, index1, PlayerAttributes.weight) + "Kg", attr);
 		}
 		if (index2 > 0) {
 			if (index1 > 0) {
@@ -355,8 +355,8 @@ public class InfoPanel extends JScrollPane {
 				doc.insertString(doc.getLength(), "\t\t", attr);
 			}
 			String footSide = "LF/";
-			if (Stats.getValue(of, index2, Stats.foot) == 1) {
-				switch (Stats.getValue(of, index2, Stats.favSide)) {
+			if (PlayerAttributes.getValue(of, index2, PlayerAttributes.foot) == 1) {
+				switch (PlayerAttributes.getValue(of, index2, PlayerAttributes.favSide)) {
 				case 0:
 					footSide = footSide + "LS";
 					break;
@@ -369,7 +369,7 @@ public class InfoPanel extends JScrollPane {
 				}
 			} else {
 				footSide = "RF/";
-				switch (Stats.getValue(of, index2, Stats.favSide)) {
+				switch (PlayerAttributes.getValue(of, index2, PlayerAttributes.favSide)) {
 				case 0:
 					footSide = footSide + "RS";
 					break;
@@ -383,20 +383,20 @@ public class InfoPanel extends JScrollPane {
 			}
 			footSide = footSide + ", ";
 			doc.insertString(doc.getLength(), footSide
-					+ Stats.getString(of, index2, Stats.height) + "cm, "
-					+ Stats.getString(of, index2, Stats.weight) + "Kg", attr);
+					+ PlayerAttributes.getString(of, index2, PlayerAttributes.height) + "cm, "
+					+ PlayerAttributes.getString(of, index2, PlayerAttributes.weight) + "Kg", attr);
 		}
 	}
 
-	private void insertStat(Stat stat, int index1, int index2)
+	private void insertStat(PlayerAttribute playerAttribute, int index1, int index2)
 			throws BadLocationException {
-		int v1 = Stats.getValue(of, index1, stat);
-		int v2 = Stats.getValue(of, index2, stat);
-		String s1 = Stats.getString(of, index1, stat);
-		String s2 = Stats.getString(of, index2, stat);
-		doc.insertString(doc.getLength(), "\n" + stat.name + "\t", attr);
+		int v1 = PlayerAttributes.getValue(of, index1, playerAttribute);
+		int v2 = PlayerAttributes.getValue(of, index2, playerAttribute);
+		String s1 = PlayerAttributes.getString(of, index1, playerAttribute);
+		String s2 = PlayerAttributes.getString(of, index2, playerAttribute);
+		doc.insertString(doc.getLength(), "\n" + playerAttribute.name + "\t", attr);
 		if (index1 > 0) {
-			setStatColour(stat, v1);
+			setStatColour(playerAttribute, v1);
 			doc.insertString(doc.getLength(), s1, attr);
 		}
 		if (index2 > 0) {
@@ -405,8 +405,8 @@ public class InfoPanel extends JScrollPane {
 				StringBuilder comp = new StringBuilder(" ");
 				int div = 3;
 				int add = 1;
-				if (stat == Stats.wfa || stat == Stats.wff
-						|| stat == Stats.consistency || stat == Stats.condition) {
+				if (playerAttribute == PlayerAttributes.wfa || playerAttribute == PlayerAttributes.wff
+						|| playerAttribute == PlayerAttributes.consistency || playerAttribute == PlayerAttributes.condition) {
 					div = 1;
 					add = 0;
 				}
@@ -428,27 +428,27 @@ public class InfoPanel extends JScrollPane {
 				}
 			}
 			StyleConstants.setForeground(attr, Color.white);
-			setStatColour(stat, v2);
+			setStatColour(playerAttribute, v2);
 			doc.insertString(doc.getLength(), "\t" + s2, attr);
 		}
 		StyleConstants.setForeground(attr, Color.white);
 	}
 
-	private void insertAbility(Stat stat, int index1, int index2, Color colour)
+	private void insertAbility(PlayerAttribute playerAttribute, int index1, int index2, Color colour)
 			throws BadLocationException {
 		StyleConstants.setForeground(attr, colour);
-		doc.insertString(doc.getLength(), "\n" + stat.name + "\t", attr);
-		if (index1 > 0 && Stats.getValue(of, index1, stat) == 1) {
+		doc.insertString(doc.getLength(), "\n" + playerAttribute.name + "\t", attr);
+		if (index1 > 0 && PlayerAttributes.getValue(of, index1, playerAttribute) == 1) {
 			doc.insertString(doc.getLength(), "O", attr);
 		}
-		if (index2 > 0 && Stats.getValue(of, index2, stat) == 1) {
+		if (index2 > 0 && PlayerAttributes.getValue(of, index2, playerAttribute) == 1) {
 			doc.insertString(doc.getLength(), "\tO", attr);
 		}
 	}
 
-	private void setStatColour(Stat stat, int v) {
-		if (stat == Stats.wfa || stat == Stats.wff || stat == Stats.consistency
-				|| stat == Stats.condition) {
+	private void setStatColour(PlayerAttribute playerAttribute, int v) {
+		if (playerAttribute == PlayerAttributes.wfa || playerAttribute == PlayerAttributes.wff || playerAttribute == PlayerAttributes.consistency
+				|| playerAttribute == PlayerAttributes.condition) {
 			if (v == 7) {
 				StyleConstants.setForeground(attr, Color.red);
 			} else if (v == 6) {

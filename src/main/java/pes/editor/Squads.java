@@ -108,67 +108,67 @@ public class Squads {
 
 	public static void tidy11(OptionFile of, int team, int freePos, int selPos) {
 		if ((team >= 0 && team < 64) || (team >= 73 && team < 213)) {
-			Stat stat = Stats.gk;
+			PlayerAttribute playerAttribute = PlayerAttributes.gk;
 			int[] score = new int[21];
 			int pos = 0;
 			if ((selPos > 0 && selPos < 4) || (selPos > 5 && selPos < 8)) {
-				stat = Stats.cbt;
+				playerAttribute = PlayerAttributes.cbt;
 				pos = 1;
 			}
 			if (selPos == 4 || selPos == 5) {
-				stat = Stats.cwp;
+				playerAttribute = PlayerAttributes.cwp;
 				pos = 1;
 			}
 			if (selPos == 8) {
-				stat = Stats.sb;
+				playerAttribute = PlayerAttributes.sb;
 				pos = 2;
 			}
 			if (selPos == 9) {
-				stat = Stats.sb;
+				playerAttribute = PlayerAttributes.sb;
 				pos = 2;
 			}
 			if (selPos > 9 && selPos < 15) {
-				stat = Stats.dm;
+				playerAttribute = PlayerAttributes.dm;
 				pos = 3;
 			}
 			if (selPos == 15) {
-				stat = Stats.wb;
+				playerAttribute = PlayerAttributes.wb;
 				pos = 2;
 			}
 			if (selPos == 16) {
-				stat = Stats.wb;
+				playerAttribute = PlayerAttributes.wb;
 				pos = 2;
 			}
 			if (selPos > 16 && selPos < 22) {
-				stat = Stats.cm;
+				playerAttribute = PlayerAttributes.cm;
 				pos = 4;
 			}
 			if (selPos == 22) {
-				stat = Stats.sm;
+				playerAttribute = PlayerAttributes.sm;
 				pos = 5;
 			}
 			if (selPos == 23) {
-				stat = Stats.sm;
+				playerAttribute = PlayerAttributes.sm;
 				pos = 5;
 			}
 			if (selPos > 23 && selPos < 29) {
-				stat = Stats.am;
+				playerAttribute = PlayerAttributes.am;
 				pos = 6;
 			}
 			if (selPos > 35 && selPos < 41) {
-				stat = Stats.cf;
+				playerAttribute = PlayerAttributes.cf;
 				pos = 7;
 			}
 			if (selPos > 30 && selPos < 36) {
-				stat = Stats.ss;
+				playerAttribute = PlayerAttributes.ss;
 				pos = 6;
 			}
 			if (selPos == 29) {
-				stat = Stats.wg;
+				playerAttribute = PlayerAttributes.wg;
 				pos = 8;
 			}
 			if (selPos == 30) {
-				stat = Stats.wg;
+				playerAttribute = PlayerAttributes.wg;
 				pos = 8;
 			}
 
@@ -197,77 +197,77 @@ public class Squads {
 					playerIndex[c] = pi;
 					switch (pos) {
 					case 0:
-						score[c] = Stats.getValue(of, pi, Stats.defence)
-						+ Stats.getValue(of, pi, Stats.balance)
-						+ Stats.getValue(of, pi, Stats.response)
-						+ Stats.getValue(of, pi, Stats.gkAbil)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.defence)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.balance)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.response)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.gkAbil)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					case 1:
-						score[c] = Stats.getValue(of, pi, Stats.defence)
-						+ Stats.getValue(of, pi, Stats.balance)
-						+ Stats.getValue(of, pi, Stats.response)
-						+ Stats.getValue(of, pi, Stats.speed)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.defence)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.balance)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.response)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.speed)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					case 2:
-						score[c] = Stats.getValue(of, pi, Stats.defence)
-						+ Stats.getValue(of, pi, Stats.balance)
-						+ Stats.getValue(of, pi, Stats.response)
-						+ Stats.getValue(of, pi, Stats.stamina)
-						+ Stats.getValue(of, pi, Stats.speed)
-						+ Stats.getValue(of, pi, Stats.lPassAcc)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.defence)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.balance)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.response)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.stamina)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.speed)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.lPassAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					case 3:
-						score[c] = Stats.getValue(of, pi, Stats.defence)
-						+ Stats.getValue(of, pi, Stats.balance)
-						+ Stats.getValue(of, pi, Stats.response)
-						+ Stats.getValue(of, pi, Stats.sPassAcc)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.defence)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.balance)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.response)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.sPassAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					case 4:
-						score[c] = Stats.getValue(of, pi, Stats.defence)
-						+ Stats.getValue(of, pi, Stats.attack)
-						+ Stats.getValue(of, pi, Stats.dribAcc)
-						+ Stats.getValue(of, pi, Stats.sPassAcc)
-						+ Stats.getValue(of, pi, Stats.tech)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.defence)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.attack)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.dribAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.sPassAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.tech)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					case 5:
-						score[c] = Stats.getValue(of, pi, Stats.attack)
-						+ Stats.getValue(of, pi, Stats.speed)
-						+ Stats.getValue(of, pi, Stats.stamina)
-						+ Stats.getValue(of, pi, Stats.dribAcc)
-						+ Stats.getValue(of, pi, Stats.lPassAcc)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.attack)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.speed)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.stamina)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.dribAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.lPassAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					case 6:
-						score[c] = Stats.getValue(of, pi, Stats.attack)
-						+ Stats.getValue(of, pi, Stats.dribAcc)
-						+ Stats.getValue(of, pi, Stats.sPassAcc)
-						+ Stats.getValue(of, pi, Stats.tech)
-						+ Stats.getValue(of, pi, Stats.agility)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.attack)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.dribAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.sPassAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.tech)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.agility)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					case 7:
-						score[c] = Stats.getValue(of, pi, Stats.attack)
-						+ Stats.getValue(of, pi, Stats.response)
-						+ Stats.getValue(of, pi, Stats.shotAcc)
-						+ Stats.getValue(of, pi, Stats.shotTec)
-						+ Stats.getValue(of, pi, Stats.tech)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.attack)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.response)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.shotAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.shotTec)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.tech)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					case 8:
-						score[c] = Stats.getValue(of, pi, Stats.attack)
-						+ Stats.getValue(of, pi, Stats.speed)
-						+ Stats.getValue(of, pi, Stats.dribAcc)
-						+ Stats.getValue(of, pi, Stats.dribSpe)
-						+ Stats.getValue(of, pi, Stats.sPassAcc)
-						+ Stats.getValue(of, pi, Stats.lPassAcc)
-						+ Stats.getValue(of, pi, Stats.agility)
-						+ Stats.getValue(of, pi, Stats.tech)
-						+ Stats.getValue(of, pi, Stats.team);
+						score[c] = PlayerAttributes.getValue(of, pi, PlayerAttributes.attack)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.speed)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.dribAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.dribSpe)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.sPassAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.lPassAcc)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.agility)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.tech)
+						+ PlayerAttributes.getValue(of, pi, PlayerAttributes.team);
 						break;
 					}
 				}
@@ -280,7 +280,7 @@ public class Squads {
 			int isPos = 0;
 			for (int i = 0; i < 21; i++) {
 				if (playerIndex[i] != 0) {
-					isPos = Stats.getValue(of, playerIndex[i], stat);
+					isPos = PlayerAttributes.getValue(of, playerIndex[i], playerAttribute);
 					if (isPos == 1 && score[i] > bestPosScore) {
 						bestPosScore = score[i];
 						bestPosPlayer = i;

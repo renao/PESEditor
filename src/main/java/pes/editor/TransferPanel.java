@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PlayerConstant;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -137,8 +139,9 @@ public class TransferPanel extends JPanel implements MouseListener, DropTargetLi
 		selectorR.squadList.addMouseListener(this);
 
 		String localPlayerType = DataFlavor.javaJVMLocalObjectMimeType
-				+ ";class=editor.Player";
+				+ ";class=" + Player.class.getName();
 		try {
+			new DataFlavor();
 			localPlayerFlavor = new DataFlavor(localPlayerType);
 		} catch (ClassNotFoundException e) {
 			System.out
@@ -925,21 +928,21 @@ public class TransferPanel extends JPanel implements MouseListener, DropTargetLi
 				minSizeR = 23;
 			}
 
-			if (indexF >= Player.firstYoung && indexF < Player.firstEdit) {
+			if (indexF >= PlayerConstant.INDEX_FIRST_MASTER_LEAGUE_YOUNG_PLAYER && indexF < PlayerConstant.INDEX_FIRST_EDIT_PLAYER) {
 				tranFL = false;
 				tranFR = false;
 			}
 
-			if (indexF >= Player.firstML && indexF < Player.firstShop) {
+			if (indexF >= PlayerConstant.INDEX_FIRST_MASTER_LEAGUE_PLAYER && indexF < PlayerConstant.INDEX_FIRST_SHOP_PLAYER) {
 				tranFL = false;
 				tranFR = false;
 			}
 
-			if (indexF >= Player.firstEdit && indexF < 32920 && squadL > 56) {
+			if (indexF >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER && indexF < 32920 && squadL > 56) {
 				tranFL = false;
 			}
 
-			if (indexF >= Player.firstEdit && indexF < 32920 && squadR > 56) {
+			if (indexF >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER && indexF < 32920 && squadR > 56) {
 				tranFR = false;
 			}
 
@@ -1091,14 +1094,14 @@ public class TransferPanel extends JPanel implements MouseListener, DropTargetLi
 
 				int nat;
 				if (!fEmpty) {
-					nat = Stats.getValue(of, indexF, Stats.nationality);
-					if (nat != (Stats.nation.length - 1) && nat != squadNat) {
+					nat = PlayerAttributes.getValue(of, indexF, PlayerAttributes.nationality);
+					if (nat != (PlayerAttributes.nation.length - 1) && nat != squadNat) {
 						tranFL = false;
 					}
 				}
 				if (!rEmpty) {
-					nat = Stats.getValue(of, indexR, Stats.nationality);
-					if (nat != (Stats.nation.length - 1) && nat != squadNat) {
+					nat = PlayerAttributes.getValue(of, indexR, PlayerAttributes.nationality);
+					if (nat != (PlayerAttributes.nation.length - 1) && nat != squadNat) {
 						tranRL = false;
 					}
 				}
@@ -1132,14 +1135,14 @@ public class TransferPanel extends JPanel implements MouseListener, DropTargetLi
 
 				int nat;
 				if (!fEmpty) {
-					nat = Stats.getValue(of, indexF, Stats.nationality);
-					if (nat != (Stats.nation.length - 1) && nat != squadNat) {
+					nat = PlayerAttributes.getValue(of, indexF, PlayerAttributes.nationality);
+					if (nat != (PlayerAttributes.nation.length - 1) && nat != squadNat) {
 						tranFR = false;
 					}
 				}
 				if (!lEmpty) {
-					nat = Stats.getValue(of, indexL, Stats.nationality);
-					if (nat != (Stats.nation.length - 1) && nat != squadNat) {
+					nat = PlayerAttributes.getValue(of, indexL, PlayerAttributes.nationality);
+					if (nat != (PlayerAttributes.nation.length - 1) && nat != squadNat) {
 						tranLR = false;
 					}
 				}

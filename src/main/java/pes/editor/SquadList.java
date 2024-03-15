@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PlayerConstant;
+
 import java.awt.Dimension;
 import java.util.Collections;
 import java.util.Vector;
@@ -36,10 +38,10 @@ public class SquadList extends JList {
 		}
 		if (team == 219) {
             var model = new Vector();
-			for (int p = 1; p < Player.total; p++) {
+			for (int p = 1; p < PlayerConstant.AMOUNT_PLAYERS; p++) {
 				model.addElement(new Player(of, p, 0));
 			}
-			for (int p = Player.firstEdit; p < 32952; p++) {
+			for (int p = PlayerConstant.INDEX_FIRST_EDIT_PLAYER; p < 32952; p++) {
 				model.addElement(new Player(of, p, 0));
 			}
 			Collections.sort(model);

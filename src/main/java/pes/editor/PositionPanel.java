@@ -31,9 +31,9 @@ public class PositionPanel extends JPanel implements ActionListener {
 		JPanel regPanel = new JPanel();
 		// of = opf;
 		// stats = s;
-		checkBox = new JCheckBox[Stats.roles.length];
-		for (int i = 0; i < Stats.roles.length; i++) {
-			checkBox[i] = new JCheckBox(Stats.roles[i].name);
+		checkBox = new JCheckBox[PlayerAttributes.roles.length];
+		for (int i = 0; i < PlayerAttributes.roles.length; i++) {
+			checkBox[i] = new JCheckBox(PlayerAttributes.roles[i].name);
 
 			if (i != 1) {
 				checkBox[i].setActionCommand(String.valueOf(i));
@@ -53,8 +53,8 @@ public class PositionPanel extends JPanel implements ActionListener {
 				if (e.getActionCommand() == "y") {
 					String p = (String) regBox.getSelectedItem();
 					int r = 0;
-					for (int i = 0; i < Stats.roles.length; i++) {
-						if (Stats.roles[i].name.equals(p)) {
+					for (int i = 0; i < PlayerAttributes.roles.length; i++) {
+						if (PlayerAttributes.roles[i].name.equals(p)) {
 							r = i;
 						}
 					}
@@ -73,10 +73,10 @@ public class PositionPanel extends JPanel implements ActionListener {
 
 	public void load(int p) {
 		player = p;
-		regPos = Stats.getValue(of, player, Stats.regPos);
-		for (int i = 0; i < Stats.roles.length; i++) {
+		regPos = PlayerAttributes.getValue(of, player, PlayerAttributes.regPos);
+		for (int i = 0; i < PlayerAttributes.roles.length; i++) {
 			if (i != 1) {
-				if (Stats.getValue(of, player, Stats.roles[i]) == 1 || regPos == i) {
+				if (PlayerAttributes.getValue(of, player, PlayerAttributes.roles[i]) == 1 || regPos == i) {
 					checkBox[i].setSelected(true);
 				} else {
 					checkBox[i].setSelected(false);
@@ -89,12 +89,12 @@ public class PositionPanel extends JPanel implements ActionListener {
 	private void updateRegBox() {
 		regBox.setActionCommand("n");
 		regBox.removeAllItems();
-		for (int i = 0; i < Stats.roles.length; i++) {
+		for (int i = 0; i < PlayerAttributes.roles.length; i++) {
 			if (checkBox[i].isSelected()) {
-				regBox.addItem(Stats.roles[i].name);
+				regBox.addItem(PlayerAttributes.roles[i].name);
 			}
 		}
-		regBox.setSelectedItem(Stats.roles[regPos].name);
+		regBox.setSelectedItem(PlayerAttributes.roles[regPos].name);
 		regBox.setActionCommand("y");
 	}
 

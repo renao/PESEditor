@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PlayerConstant;
+
 import java.io.*;
 
 import java.util.Set;
@@ -58,7 +60,7 @@ class SquadPlayer implements Comparable {
 	// help static methods
 
 	public static SquadPlayer fromPlayer(int club, int number, OptionFile of, int player) {
-		int regPos = Stats.getValue(of, player, Stats.regPos);
+		int regPos = PlayerAttributes.getValue(of, player, PlayerAttributes.regPos);
 		//"GK  0", "CWP  2", "CBT  3", "SB  4", "DMF  5",
 		//"WB  6", "CMF  7", "SMF  8", "AMF  9", "WF 10", "SS  11",
 		//"CF 12"
@@ -73,10 +75,10 @@ class SquadPlayer implements Comparable {
 			position = SquadPlayer.AT;
 		}
 		float totalAbility = 0.0f;
-		for (int i = 0; i < Stats.ability99.length; i++) {
-			totalAbility += Stats.getValue(of, player, Stats.ability99[i]);
+		for (int i = 0; i < PlayerAttributes.ability99.length; i++) {
+			totalAbility += PlayerAttributes.getValue(of, player, PlayerAttributes.ability99[i]);
 		}
-		float avgSkill = totalAbility/Stats.ability99.length;
+		float avgSkill = totalAbility/ PlayerAttributes.ability99.length;
 
 		Player p = new Player(of, player, 0);
 		String name = p.name.replaceAll(",", "");
@@ -607,7 +609,7 @@ public class CSVLoader {
 				attributeCount++;
 			}
 
-			int num = Player.firstUnused;
+			int num = PlayerConstant.INDEX_FIRST_UNUSED_PLAYER;
 			ui.resetParameters(0, num, "Loading players...");
 
 			int playerImportCounter = 1;
@@ -679,7 +681,7 @@ public class CSVLoader {
 								ui.updateProgress(nat*23+ip);
 							}
 
-							changes.add("Squad updated for team: "+Stats.nation[nat]);
+							changes.add("Squad updated for team: "+ PlayerAttributes.nation[nat]);
 						}
 					}
 					ui.updateProgress(nat*23);
@@ -716,7 +718,7 @@ public class CSVLoader {
 								ui.updateProgress(cNat*23+ip);
 							}
 
-							changes.add("Squad updated for team: Classic "+Stats.nation[cNatMap.get(cNat)]);
+							changes.add("Squad updated for team: Classic "+ PlayerAttributes.nation[cNatMap.get(cNat)]);
 						}
 					}
 					ui.updateProgress(cNat*23);
@@ -754,7 +756,7 @@ public class CSVLoader {
 
 	private void readInterStatus(int player, String v) throws IOException {
 		if (!"0".equals(v) && !"".equals(v)) {
-			int nat = Stats.getValue(of, player, Stats.nationality);
+			int nat = PlayerAttributes.getValue(of, player, PlayerAttributes.nationality);
 			int b1;
 			int b2;
 			int number = Byte.parseByte(v);
@@ -778,7 +780,7 @@ public class CSVLoader {
 	}
 
 	private void readClassicStatus(int player, String v) throws IOException {
-		int nat = Stats.getValue(of, player, Stats.nationality);
+		int nat = PlayerAttributes.getValue(of, player, PlayerAttributes.nationality);
 		int b1;
 		int b2;
 		int cNat = 0;
@@ -891,404 +893,404 @@ public class CSVLoader {
 
 		String callName = this.getAttributeValue(tokens, attributePositions, CSVLoader.attCallName);
 		if (!callName.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.callName, callName);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.callName, callName);
 		}
 
 		String gk = this.getAttributeValue(tokens, attributePositions, CSVLoader.attGk);
 		if (!gk.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[0], gk);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[0], gk);
 		}
 
 		String sw = this.getAttributeValue(tokens, attributePositions, CSVLoader.attSw);
 		if (!sw.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[2], sw);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[2], sw);
 		}
 
 		String cb = this.getAttributeValue(tokens, attributePositions, CSVLoader.attCb);
 		if (!cb.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[3], cb);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[3], cb);
 		}
 
 		String sb = this.getAttributeValue(tokens, attributePositions, CSVLoader.attSb);
 		if (!sb.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[4], sb);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[4], sb);
 		}
 
 		String dm = this.getAttributeValue(tokens, attributePositions, CSVLoader.attDm);
 		if (!dm.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[5], dm);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[5], dm);
 		}
 
 		String wb = this.getAttributeValue(tokens, attributePositions, CSVLoader.attWb);
 		if (!wb.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[6], wb);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[6], wb);
 		}
 
 		String cm = this.getAttributeValue(tokens, attributePositions, CSVLoader.attCm);
 		if (!cm.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[7], cm);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[7], cm);
 		}
 
 		String sm = this.getAttributeValue(tokens, attributePositions, CSVLoader.attSm);
 		if (!sm.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[8], sm);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[8], sm);
 		}
 
 		String am = this.getAttributeValue(tokens, attributePositions, CSVLoader.attAm);
 		if (!am.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[9], am);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[9], am);
 		}
 
 		String wf = this.getAttributeValue(tokens, attributePositions, CSVLoader.attWf);
 		if (!wf.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[10], wf);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[10], wf);
 		}
 
 		String ss = this.getAttributeValue(tokens, attributePositions, CSVLoader.attSs);
 		if (!ss.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[11], ss);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[11], ss);
 		}
 
 		String cf = this.getAttributeValue(tokens, attributePositions, CSVLoader.attCf);
 		if (!cf.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.roles[12], cf);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.roles[12], cf);
 		}
 
 		String foot = this.getAttributeValue(tokens, attributePositions, CSVLoader.attStrongFoot);
 		String favSide = this.getAttributeValue(tokens, attributePositions, CSVLoader.attFavouredSide);
 
 		if (!foot.equals(CSVLoader.attValueNotFound) && !favSide.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.foot, foot);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.foot, foot);
 			int favSideVal = CSVAttributes.getFavouredSideValue(foot, favSide);
 			String favSideValStr = Integer.toString(favSideVal);
-			Stats.setValue(of, playerId, Stats.favSide, favSideValStr);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.favSide, favSideValStr);
 		}
 
 		String weakFootAccuracy = this.getAttributeValue(tokens, attributePositions, CSVLoader.attWeakFootAccuracy);
 		if (!weakFootAccuracy.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.wfa, weakFootAccuracy);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.wfa, weakFootAccuracy);
 		}
 
 		String weakFootFrequency = this.getAttributeValue(tokens, attributePositions, CSVLoader.attWeakFootFrequency);
 		if (!weakFootFrequency.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.wff, weakFootFrequency);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.wff, weakFootFrequency);
 		}
 
 		String registeredPosition = this.getAttributeValue(tokens, attributePositions, CSVLoader.attRegisteredPosition);
 		if (!registeredPosition.equals(CSVLoader.attValueNotFound)){
 			int registeredPositionVal = registeredPositionByLabel.get(registeredPosition);
 			String registeredPositionValStr = Integer.toString(registeredPositionVal);
-			Stats.setValue(of, playerId, Stats.regPos, registeredPositionValStr);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.regPos, registeredPositionValStr);
 		}
 
 		String attack = this.getAttributeValue(tokens, attributePositions, CSVLoader.attAttack);
 		if (!attack.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.attack, attack);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.attack, attack);
 		}
 
 		String defense = this.getAttributeValue(tokens, attributePositions, CSVLoader.attDefense);
 		if (!defense.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.defence, defense);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.defence, defense);
 		}
 
 		String balance = this.getAttributeValue(tokens, attributePositions, CSVLoader.attBalance);
 		if (!balance.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.balance, balance);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.balance, balance);
 		}
 
 		String stamina = this.getAttributeValue(tokens, attributePositions, CSVLoader.attStamina);
 		if (!stamina.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.stamina, stamina);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.stamina, stamina);
 		}
 
 		String topSpeed = this.getAttributeValue(tokens, attributePositions, CSVLoader.attTopSpeed);
 		if (!topSpeed.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.speed, topSpeed);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.speed, topSpeed);
 		}
 
 		String acceleration = this.getAttributeValue(tokens, attributePositions, CSVLoader.attAcceleration);
 		if (!acceleration.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.accel, acceleration);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.accel, acceleration);
 		}
 
 		String response = this.getAttributeValue(tokens, attributePositions, CSVLoader.attResponse);
 		if (!response.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.response, response);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.response, response);
 		}
 
 		String agility = this.getAttributeValue(tokens, attributePositions, CSVLoader.attAgility);
 		if (!agility.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.agility, agility);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.agility, agility);
 		}
 
 		String dribbleAccuracy = this.getAttributeValue(tokens, attributePositions, CSVLoader.attDribbleAccuracy);
 		if (!dribbleAccuracy.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.dribAcc, dribbleAccuracy);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.dribAcc, dribbleAccuracy);
 		}
 
 		String dribbleSpeed = this.getAttributeValue(tokens, attributePositions, CSVLoader.attDribbleSpeed);
 		if (!dribbleSpeed.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.dribSpe, dribbleSpeed);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.dribSpe, dribbleSpeed);
 		}
 
 		String shortPassAccuracy = this.getAttributeValue(tokens, attributePositions, CSVLoader.attShortPassAccuracy);
 		if (!shortPassAccuracy.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.sPassAcc, shortPassAccuracy);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.sPassAcc, shortPassAccuracy);
 		}
 
 		String shortPassSpeed = this.getAttributeValue(tokens, attributePositions, CSVLoader.attShortPassSpeed);
 		if (!shortPassSpeed.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.sPassSpe, shortPassSpeed);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.sPassSpe, shortPassSpeed);
 		}
 
 		String longPassAccuracy = this.getAttributeValue(tokens, attributePositions, CSVLoader.attLongPassAccuracy);
 		if (!longPassAccuracy.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.lPassAcc, longPassAccuracy);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.lPassAcc, longPassAccuracy);
 		}
 
 		String longPassSpeed = this.getAttributeValue(tokens, attributePositions, CSVLoader.attLongPassSpeed);
 		if (!longPassSpeed.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.lPassSpe, longPassSpeed);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.lPassSpe, longPassSpeed);
 		}
 
 		String shotAccuracy = this.getAttributeValue(tokens, attributePositions, CSVLoader.attShotAccuracy);
 		if (!shotAccuracy.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.shotAcc, shotAccuracy);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.shotAcc, shotAccuracy);
 		}
 
 		String shotPower = this.getAttributeValue(tokens, attributePositions, CSVLoader.attShotPower);
 		if (!shotPower.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.shotPow, shotPower);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.shotPow, shotPower);
 		}
 
 		String shotTechnique = this.getAttributeValue(tokens, attributePositions, CSVLoader.attShotTechnique);
 		if (!shotTechnique.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.shotTec, shotTechnique);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.shotTec, shotTechnique);
 		}
 
 		String freeKickAccuracy = this.getAttributeValue(tokens, attributePositions, CSVLoader.attFreeKickAccuracy);
 		if (!freeKickAccuracy.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.fk, freeKickAccuracy);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.fk, freeKickAccuracy);
 		}
 
 		String swerve = this.getAttributeValue(tokens, attributePositions, CSVLoader.attSwerve);
 		if (!swerve.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.curling, swerve);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.curling, swerve);
 		}
 
 		String heading = this.getAttributeValue(tokens, attributePositions, CSVLoader.attHeading);
 		if (!heading.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.heading, heading);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.heading, heading);
 		}
 
 		String jump = this.getAttributeValue(tokens, attributePositions, CSVLoader.attJump);
 		if (!jump.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.jump, jump);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.jump, jump);
 		}
 
 		String tech = this.getAttributeValue(tokens, attributePositions, CSVLoader.attTechnique);
 		if (!tech.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.tech, tech);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.tech, tech);
 		}
 
 		String aggression = this.getAttributeValue(tokens, attributePositions, CSVLoader.attAggression);
 		if (!aggression.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.aggress, aggression);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.aggress, aggression);
 		}
 
 		String mentality = this.getAttributeValue(tokens, attributePositions, CSVLoader.attMentality);
 		if (!mentality.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.mental, mentality);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.mental, mentality);
 		}
 
 		String goalkeeping = this.getAttributeValue(tokens, attributePositions, CSVLoader.attGoalkeeping);
 		if (!goalkeeping.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.gkAbil, goalkeeping);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.gkAbil, goalkeeping);
 		}
 
 		String teamwork = this.getAttributeValue(tokens, attributePositions, CSVLoader.attTeamwork);
 		if (!teamwork.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.team, teamwork);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.team, teamwork);
 		}
 
 		String consistency = this.getAttributeValue(tokens, attributePositions, CSVLoader.attConsistency);
 		if (!consistency.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.consistency, consistency);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.consistency, consistency);
 		}
 
 		String condition = this.getAttributeValue(tokens, attributePositions, CSVLoader.attCondition);
 		if (!condition.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.condition, condition);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.condition, condition);
 		}
 
 		String dribbling = this.getAttributeValue(tokens, attributePositions, CSVLoader.attDribbling);
 		if (!dribbling.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[0], dribbling);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[0], dribbling);
 		}
 
 		String tacticalDribble = this.getAttributeValue(tokens, attributePositions, CSVLoader.attTacticalDribble);
 		if (!tacticalDribble.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[1], tacticalDribble);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[1], tacticalDribble);
 		}
 
 		String positioning = this.getAttributeValue(tokens, attributePositions, CSVLoader.attPositioning);
 		if (!positioning.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[2], positioning);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[2], positioning);
 		}
 
 		String reaction = this.getAttributeValue(tokens, attributePositions, CSVLoader.attReaction);
 		if (!reaction.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[3], reaction);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[3], reaction);
 		}
 
 		String playmaking = this.getAttributeValue(tokens, attributePositions, CSVLoader.attPlaymaking);
 		if (!playmaking.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[4], playmaking);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[4], playmaking);
 		}
 
 		String passing = this.getAttributeValue(tokens, attributePositions, CSVLoader.attPassing);
 		if (!passing.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[5], passing);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[5], passing);
 		}
 
 		String scoring = this.getAttributeValue(tokens, attributePositions, CSVLoader.attScoring);
 		if (!scoring.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[6], scoring);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[6], scoring);
 		}
 
 		String oneOnOneScoring = this.getAttributeValue(tokens, attributePositions, CSVLoader.attOneOnOneScoring);
 		if (!oneOnOneScoring.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[7], oneOnOneScoring);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[7], oneOnOneScoring);
 		}
 
 		String postPlayer = this.getAttributeValue(tokens, attributePositions, CSVLoader.attPostPlayer);
 		if (!postPlayer.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[8], postPlayer);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[8], postPlayer);
 		}
 
 		String lines = this.getAttributeValue(tokens, attributePositions, CSVLoader.attLines);
 		if (!lines.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[9], lines);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[9], lines);
 		}
 
 		String middleShooting = this.getAttributeValue(tokens, attributePositions, CSVLoader.attMiddleShooting);
 		if (!middleShooting.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[10], middleShooting);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[10], middleShooting);
 		}
 
 		String side = this.getAttributeValue(tokens, attributePositions, CSVLoader.attSide);
 		if (!side.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[11], side);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[11], side);
 		}
 
 		String centre = this.getAttributeValue(tokens, attributePositions, CSVLoader.attCentre);
 		if (!centre.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[12], centre);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[12], centre);
 		}
 
 		String penalties = this.getAttributeValue(tokens, attributePositions, CSVLoader.attPenalties);
 		if (!penalties.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[13], penalties);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[13], penalties);
 		}
 
 		String oneTouchPass = this.getAttributeValue(tokens, attributePositions, CSVLoader.attOneTouchPass);
 		if (!oneTouchPass.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[14], oneTouchPass);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[14], oneTouchPass);
 		}
 
 		String outside = this.getAttributeValue(tokens, attributePositions, CSVLoader.attOutside);
 		if (!outside.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[15], outside);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[15], outside);
 		}
 
 		String marking = this.getAttributeValue(tokens, attributePositions, CSVLoader.attMarking);
 		if (!marking.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[16], marking);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[16], marking);
 		}
 
 		String sliding = this.getAttributeValue(tokens, attributePositions, CSVLoader.attSliding);
 		if (!sliding.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[17], sliding);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[17], sliding);
 		}
 
 		String covering = this.getAttributeValue(tokens, attributePositions, CSVLoader.attCovering);
 		if (!covering.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[18], covering);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[18], covering);
 		}
 
 		String dLineControl = this.getAttributeValue(tokens, attributePositions, CSVLoader.attDLineControl);
 		if (!dLineControl.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[19], dLineControl);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[19], dLineControl);
 		}
 
 		String penaltyStopper = this.getAttributeValue(tokens, attributePositions, CSVLoader.attPenaltyStopper);
 		if (!penaltyStopper.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[20], penaltyStopper);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[20], penaltyStopper);
 		}
 
 		String oneOnOneStopper = this.getAttributeValue(tokens, attributePositions, CSVLoader.attOneOnOneStopper);
 		if (!oneOnOneStopper.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[21], oneOnOneStopper);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[21], oneOnOneStopper);
 		}
 
 		String longThrow = this.getAttributeValue(tokens, attributePositions, CSVLoader.attLongThrow);
 		if (!longThrow.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.abilitySpecial[22], longThrow);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.abilitySpecial[22], longThrow);
 		}
 
 		String age = this.getAttributeValue(tokens, attributePositions, CSVLoader.attAge);
 		if (!age.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.age, age);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.age, age);
 		}
 
 		String height = this.getAttributeValue(tokens, attributePositions, CSVLoader.attHeight);
 		if (!height.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.height, height);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.height, height);
 		}
 
 		String weight = this.getAttributeValue(tokens, attributePositions, CSVLoader.attWeight);
 		if (!weight.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.weight, weight);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.weight, weight);
 		}
 
 		String injuryTolerance = this.getAttributeValue(tokens, attributePositions, CSVLoader.attInjuryTolerance);
 		if (!injuryTolerance.equals(CSVLoader.attValueNotFound)){
 			String injuryToleranceVal = injuryTolerance.toUpperCase();
-			Stats.setValue(of, playerId, Stats.injury, injuryToleranceVal);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.injury, injuryToleranceVal);
 		}
 
 		String dribbleStyle = this.getAttributeValue(tokens, attributePositions, CSVLoader.attDribbleStyle);
 		if (!dribbleStyle.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.dribSty, dribbleStyle);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.dribSty, dribbleStyle);
 		}
 
 		String fkStyle = this.getAttributeValue(tokens, attributePositions, CSVLoader.attFkStyle);
 		if (!fkStyle.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.freekick, fkStyle);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.freekick, fkStyle);
 		}
 
 		String pkStyle = this.getAttributeValue(tokens, attributePositions, CSVLoader.attPkStyle);
 		if (!pkStyle.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.pkStyle, pkStyle);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.pkStyle, pkStyle);
 		}
 
 		String dkStyle = this.getAttributeValue(tokens, attributePositions, CSVLoader.attDkStyle);
 		if (!dkStyle.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.dkSty, dkStyle);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.dkSty, dkStyle);
 		}
 
 		String nationality = this.getAttributeValue(tokens, attributePositions, CSVLoader.attNationality);
 		if (!nationality.equals(CSVLoader.attValueNotFound)){
-			Stats.setValue(of, playerId, Stats.nationality, nationality);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.nationality, nationality);
 		}
 
 		String skinColor = this.getAttributeValue(tokens, attributePositions, CSVLoader.attSkinColor);
 		String faceType = this.getAttributeValue(tokens, attributePositions, CSVLoader.attFaceType);
 		String presetFaceNumber = this.getAttributeValue(tokens, attributePositions, CSVLoader.attPresetFaceNumber);
 		if (!skinColor.equals(CSVLoader.attValueNotFound) && !faceType.equals(CSVLoader.attValueNotFound) && !presetFaceNumber.equals(CSVLoader.attValueNotFound)){
-			int currentSkinColorVal = Stats.getValue(of, playerId, Stats.skin);
-			int currentFaceTypeNo = Stats.getValue(of, playerId, Stats.faceType);
-			int currentPresetFaceVal = Stats.getValue(of, playerId, Stats.face);
+			int currentSkinColorVal = PlayerAttributes.getValue(of, playerId, PlayerAttributes.skin);
+			int currentFaceTypeNo = PlayerAttributes.getValue(of, playerId, PlayerAttributes.faceType);
+			int currentPresetFaceVal = PlayerAttributes.getValue(of, playerId, PlayerAttributes.face);
 
 			int skinColorVal = Integer.parseInt(skinColor) - 1;
 			int faceTypeVal = faceTypesByLabel.get(faceType);
@@ -1296,7 +1298,7 @@ public class CSVLoader {
 
 			if (currentFaceTypeNo != faceTypeVal){
 				String faceTypeValStr = Integer.toString(faceTypeVal);
-				Stats.setValue(of, playerId, Stats.faceType, faceTypeValStr);
+				PlayerAttributes.setValue(of, playerId, PlayerAttributes.faceType, faceTypeValStr);
 			}
 
 			if (currentPresetFaceVal != presetFaceNumberVal || currentFaceTypeNo != faceTypeVal){
@@ -1306,18 +1308,18 @@ public class CSVLoader {
 				}
 
 				String presetFaceNumberValStr = Integer.toString(presetFaceNumberVal);
-				Stats.setValue(of, playerId, Stats.face, presetFaceNumberValStr);
+				PlayerAttributes.setValue(of, playerId, PlayerAttributes.face, presetFaceNumberValStr);
 			}
 
 			if (currentSkinColorVal != skinColorVal){
 				String skinColorValStr = Integer.toString(skinColorVal);
-				Stats.setValue(of, playerId, Stats.skin, skinColorValStr);
+				PlayerAttributes.setValue(of, playerId, PlayerAttributes.skin, skinColorValStr);
 			}
 		}
 
-		int ia = Player.startAdr + (playerId * 124);
-		if (playerId >= Player.firstEdit) {
-			ia = Player.startAdrE + ((playerId - Player.firstEdit) * 124);
+		int ia = PlayerConstant.startAdr + (playerId * 124);
+		if (playerId >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER) {
+			ia = PlayerConstant.startAdrE + ((playerId - PlayerConstant.INDEX_FIRST_EDIT_PLAYER) * 124);
 		}
 
 		byte[] playerData = Arrays.copyOfRange(of.data, ia, ia + 124);
@@ -1447,7 +1449,7 @@ public class CSVLoader {
 			if (!underShortsColor.equals(currentUnderShortsColor) || !socksType.equals(currentSocksType)) {
 				int underShortsColorSocksTypeVal = CSVAttributes.getUnderShortsColorSocksTypeValue(underShortsColor, socksType);
 
-				int correctFaceValue = Stats.getValue(of, playerId, Stats.face);
+				int correctFaceValue = PlayerAttributes.getValue(of, playerId, PlayerAttributes.face);
 				resetFace = true;
 				resetFaceValueStr = Integer.toString(correctFaceValue);
 
@@ -1711,7 +1713,7 @@ public class CSVLoader {
 		System.arraycopy(playerData, 0, of.data, ia, 124);
 
 		if (resetFace) {
-			Stats.setValue(of, playerId, Stats.face, resetFaceValueStr);
+			PlayerAttributes.setValue(of, playerId, PlayerAttributes.face, resetFaceValueStr);
 		}
 
 		String internationalNumber = this.getAttributeValue(tokens, attributePositions, CSVLoader.attInternationalNumber);

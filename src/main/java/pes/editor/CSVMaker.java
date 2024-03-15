@@ -1,5 +1,7 @@
 package pes.editor;
 
+import pes.editor.constants.PlayerConstant;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,8 +47,8 @@ public class CSVMaker {
 
 			team = Clubs.getNames(of);
 
-			int num = Player.firstUnused;
-			if (extra) num = Player.total;
+			int num = PlayerConstant.INDEX_FIRST_UNUSED_PLAYER;
+			if (extra) num = PlayerConstant.AMOUNT_PLAYERS;
 			if (create) num += 200;
 			ui.resetParameters(0, num, "Saving players...");
 
@@ -57,18 +59,18 @@ public class CSVMaker {
 				out.write(10);
 				out.flush();
 			}
-			for (int player = 1; player < Player.firstUnused; player++) {
+			for (int player = 1; player < PlayerConstant.INDEX_FIRST_UNUSED_PLAYER; player++) {
 				writePlayer(player, out);
 				ui.updateProgress(player);
 			}
 			if (extra) {
-				for (int player = Player.firstUnused; player < Player.total; player++) {
+				for (int player = PlayerConstant.INDEX_FIRST_UNUSED_PLAYER; player < PlayerConstant.AMOUNT_PLAYERS; player++) {
 					writePlayer(player, out);
 					ui.updateProgress(player);
 				}
 			}
 			if (create) {
-				for (int player = Player.firstEdit; player < 32952; player++) {
+				for (int player = PlayerConstant.INDEX_FIRST_EDIT_PLAYER; player < 32952; player++) {
 					writePlayer(player, out);
 					ui.updateProgress(player);
 				}
@@ -188,7 +190,7 @@ public class CSVMaker {
 
 	private void writeInterStatus(int player, BufferedWriter out) throws IOException {
 		String intPlayNo = "0";
-		int nat = Stats.getValue(of, player, Stats.nationality);
+		int nat = PlayerAttributes.getValue(of, player, PlayerAttributes.nationality);
 		int num;
 		int b1;
 		int b2;
@@ -208,7 +210,7 @@ public class CSVMaker {
 
 	private void writeClassicStatus(int player, BufferedWriter out) throws IOException {
 		String intPlayNo = "0";
-		int nat = Stats.getValue(of, player, Stats.nationality);
+		int nat = PlayerAttributes.getValue(of, player, PlayerAttributes.nationality);
 		int num;
 		int b1;
 		int b2;
@@ -251,7 +253,7 @@ public class CSVMaker {
 
 	private String getClassicNumber(int player) {
 		String intPlayNo = "0";
-		int nat = Stats.getValue(of, player, Stats.nationality);
+		int nat = PlayerAttributes.getValue(of, player, PlayerAttributes.nationality);
 		int num;
 		int b1;
 		int b2;
@@ -329,9 +331,9 @@ public class CSVMaker {
 	private void writePlayer(int player, BufferedWriter out)
 			throws IOException {
 
-		int ia = Player.startAdr + (player * 124);
-		if (player >= Player.firstEdit) {
-			ia = Player.startAdrE + ((player - Player.firstEdit) * 124);
+		int ia = PlayerConstant.startAdr + (player * 124);
+		if (player >= PlayerConstant.INDEX_FIRST_EDIT_PLAYER) {
+			ia = PlayerConstant.startAdrE + ((player - PlayerConstant.INDEX_FIRST_EDIT_PLAYER) * 124);
 		}
 
 		byte[] playerData = Arrays.copyOfRange(of.data, ia, ia + 124);
@@ -431,13 +433,13 @@ public class CSVMaker {
 
 		String specificGrowthType = Integer.toString(playerData[86]);
 
-		int registeredPositionVal = Integer.parseInt(Stats.getString(of, player, Stats.regPos));
+		int registeredPositionVal = Integer.parseInt(PlayerAttributes.getString(of, player, PlayerAttributes.regPos));
 		String registeredPosition = registeredPositionByValue.get(registeredPositionVal);
 
-		int skinColor = (Stats.getValue(of, player, Stats.skin) + 1);
-		int faceTypeVal = Stats.getValue(of, player, Stats.faceType);
+		int skinColor = (PlayerAttributes.getValue(of, player, PlayerAttributes.skin) + 1);
+		int faceTypeVal = PlayerAttributes.getValue(of, player, PlayerAttributes.faceType);
 		String faceTypeLabel = faceTypesByValue.get(faceTypeVal);
-		int presetFaceNo = (Stats.getValue(of, player, Stats.face) + 1);
+		int presetFaceNo = (PlayerAttributes.getValue(of, player, PlayerAttributes.face) + 1);
 
 		if (faceTypeLabel.equals("Special")){
 			String specialFaceKey = skinColor + "/" + presetFaceNo;
@@ -562,38 +564,38 @@ public class CSVMaker {
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.callName));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.callName));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
 		//Basic Settings
-		out.write(Stats.getString(of, player, Stats.age));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.age));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.injury));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.injury));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.dribSty));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.dribSty));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.freekick));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.freekick));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.pkStyle));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.pkStyle));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.dkSty));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.dkSty));
 		out.flush();
 		out.write(separator);
 		out.flush();
@@ -619,13 +621,13 @@ public class CSVMaker {
 		out.write(separator);
 		out.flush();
 		
-		out.write(Stats.getString(of, player, Stats.consistency));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.consistency));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
 		//Position
-		out.write(Stats.getString(of, player, Stats.foot));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.foot));
 		out.flush();
 		out.write(separator);
 		out.flush();
@@ -643,9 +645,9 @@ public class CSVMaker {
 		out.flush();
 
 		//All positions
-		for (int i = 0; i < Stats.roles.length; i++) {
+		for (int i = 0; i < PlayerAttributes.roles.length; i++) {
 			if (i != 1) {
-				out.write(Stats.getString(of, player, Stats.roles[i]));
+				out.write(PlayerAttributes.getString(of, player, PlayerAttributes.roles[i]));
 				out.flush();
 				out.write(separator);
 				out.flush();
@@ -653,7 +655,7 @@ public class CSVMaker {
 		}
 
 		//Club & Nationality
-		out.write(Stats.getString(of, player, Stats.nationality));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.nationality));
 		out.flush();
 		out.write(separator);
 		out.flush();
@@ -909,12 +911,12 @@ public class CSVMaker {
 		out.flush();
 
 		//Physique
-		out.write(Stats.getString(of, player, Stats.height));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.height));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.weight));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.weight));
 		out.flush();
 		out.write(separator);
 		out.flush();
@@ -1047,33 +1049,33 @@ public class CSVMaker {
 
 		//Ability - Standard
 		//All standard 1-99 abilities
-		for (int i = 0; i < Stats.ability99.length; i++) {
-			out.write(Stats.getString(of, player, Stats.ability99[i]));
+		for (int i = 0; i < PlayerAttributes.ability99.length; i++) {
+			out.write(PlayerAttributes.getString(of, player, PlayerAttributes.ability99[i]));
 			out.flush();
 			out.write(separator);
 			out.flush();
 		}
 
-		out.write(Stats.getString(of, player, Stats.condition));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.condition));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.wfa));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.wfa));
 		out.flush();
 		out.write(separator);
 		out.flush();
 
-		out.write(Stats.getString(of, player, Stats.wff));
+		out.write(PlayerAttributes.getString(of, player, PlayerAttributes.wff));
 		out.flush();
 		out.write(separator);
 		out.flush();
 		
-		for (int i = 0; i < Stats.abilitySpecial.length; i++) {
-			out.write(Stats.getString(of, player, Stats.abilitySpecial[i]));
+		for (int i = 0; i < PlayerAttributes.abilitySpecial.length; i++) {
+			out.write(PlayerAttributes.getString(of, player, PlayerAttributes.abilitySpecial[i]));
 			out.flush();
 			//Don't print separator if last value
-			if (i != Stats.abilitySpecial.length - 1) {
+			if (i != PlayerAttributes.abilitySpecial.length - 1) {
 				out.write(separator);
 				out.flush();
 			}
@@ -1087,12 +1089,12 @@ public class CSVMaker {
 
 	private String getSide(int p) {
 		String side = "B";
-		int s = Stats.getValue(of, p, Stats.favSide);
+		int s = PlayerAttributes.getValue(of, p, PlayerAttributes.favSide);
 		if (s == 0) {
-			side = Stats.getString(of, p, Stats.foot);
+			side = PlayerAttributes.getString(of, p, PlayerAttributes.foot);
 		}
 		if (s == 1) {
-			if (Stats.getValue(of, p, Stats.foot) == 0) {
+			if (PlayerAttributes.getValue(of, p, PlayerAttributes.foot) == 0) {
 				side = "L";
 			} else {
 				side = "R";
